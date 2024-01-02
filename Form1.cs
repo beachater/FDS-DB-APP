@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace FDS_application
 {
     public partial class Tst : Form
     {
+        private MySqlConnection mysqlconn;
+
         public Tst()
         {
             InitializeComponent();
+            string mysqlCon = "datasource=localhost; port=3307; user=root; database=infinytartwerks; password=root";
+            mysqlconn = new MySqlConnection(mysqlCon);
+            
         }
 
        
@@ -58,6 +64,41 @@ namespace FDS_application
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string username, password;
+
+            username = tbUsername.Text;
+            password = tbPassword.Text;
+
+
+            String query = "SELECT * FROM USERS WHERE userName = '"+tbUsername.Text+"' AND password = '"+tbPassword.Text+"' ";
+            MySqlDataAdapter msda = new MySqlDataAdapter(query, mysqlconn);
+
+            DataTable dtable = new DataTable();
+            msda.Fill(dtable);
+
+            if(dtable.Rows.Count > 0)
+            {
+                username = tbUsername.Text;
+                password = tbPassword.Text;
+
+                frmNewService f2 = new frmNewService();
+                f2.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Invalid deets");
+            }
+           
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

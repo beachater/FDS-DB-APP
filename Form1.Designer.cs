@@ -30,14 +30,15 @@
         {
             this.btnNewService = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnFindService = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.tbUsername = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tbUsername = new System.Windows.Forms.TextBox();
-            this.tbPassword = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnFindService = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnEnter = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -70,45 +71,10 @@
             this.panel1.TabIndex = 2;
             this.panel1.UseWaitCursor = true;
             // 
-            // btnFindService
-            // 
-            this.btnFindService.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.btnFindService.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFindService.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindService.Location = new System.Drawing.Point(12, 380);
-            this.btnFindService.Name = "btnFindService";
-            this.btnFindService.Size = new System.Drawing.Size(195, 112);
-            this.btnFindService.TabIndex = 2;
-            this.btnFindService.Text = "Find Service";
-            this.btnFindService.UseVisualStyleBackColor = true;
-            this.btnFindService.UseWaitCursor = true;
-            this.btnFindService.Click += new System.EventHandler(this.btnFindService_Click);
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(24, 83);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(61, 16);
-            this.lblUsername.TabIndex = 5;
-            this.lblUsername.Text = "Username";
-            this.lblUsername.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // lblPass
-            // 
-            this.lblPass.AutoSize = true;
-            this.lblPass.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPass.Location = new System.Drawing.Point(24, 115);
-            this.lblPass.Name = "lblPass";
-            this.lblPass.Size = new System.Drawing.Size(58, 16);
-            this.lblPass.TabIndex = 6;
-            this.lblPass.Text = "Password";
-            this.lblPass.Click += new System.EventHandler(this.lblPass_Click);
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(108)))), ((int)(((byte)(56)))));
+            this.panel2.Controls.Add(this.btnEnter);
             this.panel2.Controls.Add(this.tbPassword);
             this.panel2.Controls.Add(this.tbUsername);
             this.panel2.Controls.Add(this.lblUsername);
@@ -117,21 +83,49 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(312, 199);
             this.panel2.TabIndex = 7;
-            // 
-            // tbUsername
-            // 
-            this.tbUsername.Location = new System.Drawing.Point(115, 83);
-            this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(174, 20);
-            this.tbUsername.TabIndex = 7;
-            this.tbUsername.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            this.panel2.UseWaitCursor = true;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(115, 115);
+            this.tbPassword.Location = new System.Drawing.Point(111, 83);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(174, 20);
             this.tbPassword.TabIndex = 8;
+            this.tbPassword.UseWaitCursor = true;
+            // 
+            // tbUsername
+            // 
+            this.tbUsername.Location = new System.Drawing.Point(111, 51);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(174, 20);
+            this.tbUsername.TabIndex = 7;
+            this.tbUsername.UseWaitCursor = true;
+            this.tbUsername.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(20, 51);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(61, 16);
+            this.lblUsername.TabIndex = 5;
+            this.lblUsername.Text = "Username";
+            this.lblUsername.UseWaitCursor = true;
+            this.lblUsername.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // lblPass
+            // 
+            this.lblPass.AutoSize = true;
+            this.lblPass.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPass.Location = new System.Drawing.Point(20, 83);
+            this.lblPass.Name = "lblPass";
+            this.lblPass.Size = new System.Drawing.Size(58, 16);
+            this.lblPass.TabIndex = 6;
+            this.lblPass.Text = "Password";
+            this.lblPass.UseWaitCursor = true;
+            this.lblPass.Click += new System.EventHandler(this.lblPass_Click);
             // 
             // pictureBox1
             // 
@@ -147,6 +141,20 @@
             this.pictureBox1.UseWaitCursor = true;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
+            // btnFindService
+            // 
+            this.btnFindService.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.btnFindService.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFindService.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindService.Location = new System.Drawing.Point(12, 380);
+            this.btnFindService.Name = "btnFindService";
+            this.btnFindService.Size = new System.Drawing.Size(195, 112);
+            this.btnFindService.TabIndex = 2;
+            this.btnFindService.Text = "Find Service";
+            this.btnFindService.UseVisualStyleBackColor = true;
+            this.btnFindService.UseWaitCursor = true;
+            this.btnFindService.Click += new System.EventHandler(this.btnFindService_Click);
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
@@ -158,6 +166,16 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.UseWaitCursor = true;
+            // 
+            // btnEnter
+            // 
+            this.btnEnter.Location = new System.Drawing.Point(194, 132);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(91, 28);
+            this.btnEnter.TabIndex = 9;
+            this.btnEnter.Text = "Enter";
+            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.Click += new System.EventHandler(this.button1_Click);
             // 
             // Tst
             // 
@@ -197,6 +215,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.Button btnEnter;
     }
 }
 
