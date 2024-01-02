@@ -1,0 +1,13 @@
+D:\FDS APP\FDS\FDS application\FDS application\bin\Debug\FDS application.exe.config
+D:\FDS APP\FDS\FDS application\FDS application\bin\Debug\FDS application.exe
+D:\FDS APP\FDS\FDS application\FDS application\bin\Debug\FDS application.pdb
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.csproj.AssemblyReference.cache
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.Properties.Resources.resources
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.csproj.GenerateResource.cache
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.csproj.CoreCompileInputs.cache
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.exe
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.pdb
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.Tst.resources
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.frmNewService.resources
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.frmFindService.resources
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UCFindService.resources
