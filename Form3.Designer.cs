@@ -31,6 +31,7 @@
             this.lblTrackService = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnHome2 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome2)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +51,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGray;
             this.panel1.Controls.Add(this.lblTrackService);
-            this.panel1.Controls.Add(this.btnHome2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -60,7 +60,7 @@
             // btnHome2
             // 
             this.btnHome2.Image = global::FDS_application.Properties.Resources.icons8_home_50;
-            this.btnHome2.Location = new System.Drawing.Point(61, 13);
+            this.btnHome2.Location = new System.Drawing.Point(381, 219);
             this.btnHome2.Name = "btnHome2";
             this.btnHome2.Size = new System.Drawing.Size(50, 50);
             this.btnHome2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -68,12 +68,21 @@
             this.btnHome2.TabStop = false;
             this.btnHome2.Click += new System.EventHandler(this.btnHome2_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(106, 138);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(39, 33);
+            this.panel2.TabIndex = 3;
+            // 
             // frmFindService
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 640);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnHome2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmFindService";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -83,6 +92,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -91,5 +101,6 @@
         private System.Windows.Forms.Label lblTrackService;
         private System.Windows.Forms.PictureBox btnHome2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

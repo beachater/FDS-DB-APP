@@ -14,10 +14,13 @@ namespace FDS_application
     public partial class Tst : Form
     {
         private MySqlConnection mysqlconn;
+      
 
         public Tst()
         {
             InitializeComponent();
+            pictureBox1 = new TranspPictureBox();
+            Controls.Add(pictureBox1);
             string mysqlCon = "datasource=localhost; port=3307; user=root; database=infinytartwerks; password=root";
             mysqlconn = new MySqlConnection(mysqlCon);
             
@@ -87,8 +90,8 @@ namespace FDS_application
                 username = tbUsername.Text;
                 password = tbPassword.Text;
 
-                frmNewService f2 = new frmNewService();
-                f2.Show();
+                dashOrder d1 = new dashOrder();
+                d1.Show();
                 this.Hide();
             }
             else

@@ -99,6 +99,9 @@ namespace FDS_application
             panel7.Size = new Size(panel7.Width - 5, panel7.Height - 5); // Restore original size
         }
 
-       
+        private void panel2_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

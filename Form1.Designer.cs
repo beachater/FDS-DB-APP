@@ -28,48 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnNewService = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnEnter = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnFindService = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnEnter = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnNewService
+            // pictureBox2
             // 
-            this.btnNewService.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.btnNewService.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNewService.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewService.Location = new System.Drawing.Point(244, 380);
-            this.btnNewService.Name = "btnNewService";
-            this.btnNewService.Size = new System.Drawing.Size(195, 112);
-            this.btnNewService.TabIndex = 0;
-            this.btnNewService.Text = "New Service";
-            this.btnNewService.UseVisualStyleBackColor = true;
-            this.btnNewService.UseWaitCursor = true;
-            this.btnNewService.Click += new System.EventHandler(this.testButton_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(161)))), ((int)(((byte)(94)))));
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.panel1.Location = new System.Drawing.Point(445, -10);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(617, 745);
-            this.panel1.TabIndex = 2;
-            this.panel1.UseWaitCursor = true;
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.pictureBox2.Image = global::FDS_application.Properties.Resources.Untitled_design__2_;
+            this.pictureBox2.Location = new System.Drawing.Point(-88, -2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1190, 677);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.UseWaitCursor = true;
             // 
             // panel2
             // 
@@ -79,12 +64,23 @@
             this.panel2.Controls.Add(this.tbUsername);
             this.panel2.Controls.Add(this.lblUsername);
             this.panel2.Controls.Add(this.lblPass);
-            this.panel2.Location = new System.Drawing.Point(152, 399);
+            this.panel2.Location = new System.Drawing.Point(160, 292);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(312, 199);
             this.panel2.TabIndex = 7;
             this.panel2.UseWaitCursor = true;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // btnEnter
+            // 
+            this.btnEnter.Location = new System.Drawing.Point(194, 132);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(91, 28);
+            this.btnEnter.TabIndex = 9;
+            this.btnEnter.Text = "Enter";
+            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.UseWaitCursor = true;
+            this.btnEnter.Click += new System.EventHandler(this.button1_Click);
             // 
             // tbPassword
             // 
@@ -132,50 +128,25 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.pictureBox1.Image = global::FDS_application.Properties.Resources.infinytArtwerks_logo_removebg_preview;
-            this.pictureBox1.Location = new System.Drawing.Point(-301, 76);
+            this.pictureBox1.Location = new System.Drawing.Point(-214, 27);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(918, 277);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.Size = new System.Drawing.Size(824, 238);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.UseWaitCursor = true;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
-            // btnFindService
+            // panel1
             // 
-            this.btnFindService.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.btnFindService.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFindService.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFindService.Location = new System.Drawing.Point(12, 380);
-            this.btnFindService.Name = "btnFindService";
-            this.btnFindService.Size = new System.Drawing.Size(195, 112);
-            this.btnFindService.TabIndex = 2;
-            this.btnFindService.Text = "Find Service";
-            this.btnFindService.UseVisualStyleBackColor = true;
-            this.btnFindService.UseWaitCursor = true;
-            this.btnFindService.Click += new System.EventHandler(this.btnFindService_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.pictureBox2.Image = global::FDS_application.Properties.Resources.Untitled_design__2_;
-            this.pictureBox2.Location = new System.Drawing.Point(-95, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(556, 677);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.UseWaitCursor = true;
-            // 
-            // btnEnter
-            // 
-            this.btnEnter.Location = new System.Drawing.Point(194, 132);
-            this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(91, 28);
-            this.btnEnter.TabIndex = 9;
-            this.btnEnter.Text = "Enter";
-            this.btnEnter.UseVisualStyleBackColor = true;
-            this.btnEnter.Click += new System.EventHandler(this.button1_Click);
+            this.panel1.BackColor = System.Drawing.Color.DarkGray;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(226, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(630, 521);
+            this.panel1.TabIndex = 8;
+            this.panel1.UseWaitCursor = true;
             // 
             // Tst
             // 
@@ -184,8 +155,6 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1024, 640);
-            this.Controls.Add(this.btnFindService);
-            this.Controls.Add(this.btnNewService);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
@@ -194,28 +163,25 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.UseWaitCursor = true;
-            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnNewService;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button btnFindService;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnEnter;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPass;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox tbUsername;
-        private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Button btnEnter;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

@@ -44,3 +44,6 @@ D:\FDS APP\FDS\FDS application\FDS application\bin\Debug\System.Numerics.Vectors
 D:\FDS APP\FDS\FDS application\FDS application\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\FDS APP\FDS\FDS application\FDS application\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.csproj.CopyComplete
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.dashOrder.resources
+D:\FDS APP\FDS\FDS application\FDS application\bin\Debug\MaterialSkin.dll
+D:\FDS APP\FDS\FDS application\FDS application\bin\Debug\Guna.UI2.dll
