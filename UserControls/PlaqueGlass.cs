@@ -16,8 +16,13 @@ namespace FDS_application.UserControls
         private int orderId;
         private string productSKU = "Infi4";
         private string size;
+        private ItemGetDAO itemDAO;
+        
         private CustomerDAO orderDAO = new CustomerDAO();
-
+        public PlaqueGlass(ItemGetDAO itemDAO) : this()  // Overloaded constructor
+        {
+            this.itemDAO = itemDAO;  // Set the instance
+        }
         public PlaqueGlass()
         {
             InitializeComponent();
@@ -122,6 +127,8 @@ namespace FDS_application.UserControls
                 // Handle the case where parsing fails (invalid input)
                 MessageBox.Show("Please enter a valid quantity.");
             }
+            itemDAO.RaiseDataChanged();
+
 
         }
 

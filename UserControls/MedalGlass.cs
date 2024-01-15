@@ -15,7 +15,13 @@ namespace FDS_application.UserControls
         private int orderId;
         private string productSKU = "Infi5";
         private string size;
+        private ItemGetDAO itemDAO;
         private CustomerDAO orderDAO = new CustomerDAO();
+
+        public MedalGlass(ItemGetDAO itemDAO) : this()  // Overloaded constructor
+        {
+            this.itemDAO = itemDAO;  // Set the instance
+        }
         public MedalGlass()
         {
             InitializeComponent();
@@ -75,6 +81,8 @@ namespace FDS_application.UserControls
                 // Handle the case where parsing fails (invalid input)
                 MessageBox.Show("Please enter a valid quantity.");
             }
+            itemDAO.RaiseDataChanged();
+
         }
         private void PriceDisplay_TextChanged(object sender, EventArgs e)
         {

@@ -30,7 +30,11 @@ namespace FDS_application
                 {
                     connection.Open();
 
-                    string query = "SELECT SKU, Quantity, unit_price FROM tb_order_items WHERE order_id = @OrderID";
+                    string query = "SELECT oi.quantity, oi.unit_price, p.product_name " +
+                                   "FROM tb_order_items oi " +
+                                   "JOIN tb_product p ON oi.sku = p.sku " +
+                                   "WHERE oi.order_id = @OrderID";
+
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@OrderID", orderId);
@@ -41,8 +45,8 @@ namespace FDS_application
                             {
                                 TotalItemList item = new TotalItemList
                                 {
-                                    SKU = reader["SKU"].ToString(),
-                                    Quantity = Convert.ToInt32(reader["Quantity"]),
+                                    Product = reader["product_name"].ToString(),  // Use product_name instead of SKU
+                                    Quantity = Convert.ToInt32(reader["quantity"]),
                                     unit_price = Convert.ToInt32(reader["unit_price"])
                                 };
                                 returnThese.Add(item);

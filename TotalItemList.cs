@@ -8,7 +8,7 @@ namespace FDS_application
 {
     public class TotalItemList
     {
-        public string SKU { get; set; }
+        public string Product { get; set; }
         public int Quantity { get; set; }
         public int unit_price { get; set; }
     }

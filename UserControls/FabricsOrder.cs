@@ -81,7 +81,7 @@ namespace FDS_application.UserControls
                     addUserControl(tshirt);
                     break;
                 case "Laces":
-                    LacesFabric laces = new LacesFabric();
+                    LacesFabric laces = new LacesFabric(itemDAO);
                     laces.SetOrderId(this.orderId);
                     addUserControl(laces);
                     break;

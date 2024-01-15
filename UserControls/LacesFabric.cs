@@ -15,11 +15,17 @@ namespace FDS_application
         private int orderId;
         private string productSKU = "Infi2";
         private string size;
+        private ItemGetDAO itemDAO;
+
         public void SetOrderId(int orderId)
         {
             this.orderId = orderId;
         }
         private CustomerDAO orderDAO = new CustomerDAO();
+        public LacesFabric(ItemGetDAO itemDAO) : this()  // Overloaded constructor
+        {
+            this.itemDAO = itemDAO;  // Set the instance
+        }
         public LacesFabric()
         {
             InitializeComponent();
@@ -90,6 +96,8 @@ namespace FDS_application
                 // Handle the case where parsing fails (invalid input)
                 MessageBox.Show("Please enter a valid quantity.");
             }
+            itemDAO.RaiseDataChanged();
+
         }
 
         private void PriceDisplay_TextChanged(object sender, EventArgs e)

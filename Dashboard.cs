@@ -53,7 +53,7 @@ namespace FDS_application
             //this.showOrderPanel.Visible = true;
             //this.showSuppliesPanel.Visible = false;
         }
-
+        /*
         private void dashOrder_MouseEnter(object sender, EventArgs e)
         {
             this.dashboardOrderPanel.BackColor = Color.LightBlue; // Change background color
@@ -65,7 +65,7 @@ namespace FDS_application
             this.dashboardOrderPanel.BackColor = Color.FromArgb(186, 189, 141); // Revert to default color
             this.dashboardOrderPanel.Size = new Size(this.dashboardOrderPanel.Width - 5, this.dashboardOrderPanel.Height - 5);
         }
-
+        
         private void panel1_Paint_2(object sender, PaintEventArgs e)
         {
 
@@ -118,8 +118,8 @@ namespace FDS_application
             this.dashboardResourcesHistory.BackColor = Color.FromArgb(186, 189, 141); // Revert to default color
             this.dashboardResourcesHistory.Size = new Size(this.dashboardResourcesHistory.Width - 5, this.dashboardResourcesHistory.Height - 5);
         }
-
-        private void dashboardOrderPanel_Paint(object sender, PaintEventArgs e)
+        */
+        /*private void dashboardOrderPanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -134,6 +134,7 @@ namespace FDS_application
             //this.showOrderPanel.Visible = false;
             //this.showSuppliesPanel.Visible = true;
         }
+        */
         
         private void addUserControl(UserControl userControl)
         {

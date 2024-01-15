@@ -15,7 +15,13 @@ namespace FDS_application.UserControls
         private int orderId;
         private string productSKU = "Infi6";
         private string size;
+        private ItemGetDAO itemDAO;
+
         private CustomerDAO orderDAO = new CustomerDAO();
+        public WoodOrders(ItemGetDAO itemDAO) : this()  // Overloaded constructor
+        {
+            this.itemDAO = itemDAO;  // Set the instance
+        }
         public WoodOrders()
         {
             InitializeComponent();
@@ -111,6 +117,8 @@ namespace FDS_application.UserControls
                 // Handle the case where parsing fails (invalid input)
                 MessageBox.Show("Please enter a valid quantity.");
             }
+            itemDAO.RaiseDataChanged();
+
         }
         private void quantityTxt_TextChanged(object sender, EventArgs e)
         {

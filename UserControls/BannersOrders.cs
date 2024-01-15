@@ -15,10 +15,15 @@ namespace FDS_application.UserControls
         private int orderId;
         private string productSKU = "Infi3";
         private string size;
+        private ItemGetDAO itemDAO;
         private CustomerDAO orderDAO = new CustomerDAO();
         public void SetOrderId(int orderId)
         {
             this.orderId = orderId;
+        }
+        public BannersOrders(ItemGetDAO itemDAO) : this()  // Overloaded constructor
+        {
+            this.itemDAO = itemDAO;  // Set the instance
         }
         public BannersOrders()
         {
@@ -115,6 +120,7 @@ namespace FDS_application.UserControls
                 // Handle the case where parsing fails (invalid input)
                 MessageBox.Show("Please enter a valid quantity.");
             }
+            itemDAO.RaiseDataChanged();
 
         }
 

@@ -68,21 +68,27 @@ namespace FDS_application.UserControls
 
         private void gBannersButton_Click(object sender, EventArgs e)
         {
-            BannersOrders uc = new BannersOrders();
+            itemDAO.SetOrderId(orderId);
+
+            BannersOrders uc = new BannersOrders(itemDAO);
             uc.SetOrderId(this.orderId);
             addUserControl(uc);
         }
 
         private void gGlassButton_Click(object sender, EventArgs e)
         {
-            GlassOrders uc = new GlassOrders();
+            itemDAO.SetOrderId(orderId);
+
+            GlassOrders uc = new GlassOrders(itemDAO);
             uc.SetOrderId(this.orderId);
             addUserControl(uc);
         }
 
         private void gWoodButton_Click(object sender, EventArgs e)
         {
-            WoodOrders uc = new WoodOrders();
+            itemDAO.SetOrderId(orderId);
+
+            WoodOrders uc = new WoodOrders(itemDAO);
             uc.SetOrderId(this.orderId);
             addUserControl(uc);
         }

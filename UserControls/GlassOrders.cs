@@ -12,8 +12,13 @@ namespace FDS_application.UserControls
 {
     public partial class GlassOrders : UserControl
     {
+        private ItemGetDAO itemDAO;
         private int orderId;
         private CustomerOrderTransactionDAO dao = new CustomerOrderTransactionDAO();
+        public GlassOrders(ItemGetDAO itemDAO) : this()  // Overloaded constructor
+        {
+            this.itemDAO = itemDAO;  // Set the instance
+        }
         public GlassOrders()
         {
             InitializeComponent();
@@ -55,12 +60,17 @@ namespace FDS_application.UserControls
             switch (selectedProduct)
             {
                 case "Plaque":
-                    PlaqueGlass plaque = new PlaqueGlass();
+                    itemDAO.SetOrderId(orderId);
+
+                    PlaqueGlass plaque = new PlaqueGlass(itemDAO);
                     plaque.SetOrderId(this.orderId);
                     addUserControl(plaque);
                     break;
                 case "Medal":
-                    MedalGlass medals = new MedalGlass();
+                    itemDAO.SetOrderId(orderId);
+
+                    MedalGlass medals = new MedalGlass(itemDAO);
+
                     medals.SetOrderId(this.orderId);
                     addUserControl(medals);
                     break;
