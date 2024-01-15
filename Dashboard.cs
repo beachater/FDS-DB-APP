@@ -159,6 +159,11 @@ namespace FDS_application
             SuppliesUC uc1 = new SuppliesUC();
             addUserControl(uc1);
         }
-    
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

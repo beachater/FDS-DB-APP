@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.fabricOrderTrans = new System.Windows.Forms.Panel();
-            this.fabricTypecmb = new Guna.UI2.WinForms.Guna2ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.fabricTypecmb = new Guna.UI2.WinForms.Guna2ComboBox();
             this.fabricOrderTrans.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,22 +54,6 @@
             this.fabricOrderTrans.TabIndex = 1;
             this.fabricOrderTrans.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // fabricTypecmb
-            // 
-            this.fabricTypecmb.BackColor = System.Drawing.Color.Transparent;
-            this.fabricTypecmb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.fabricTypecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.fabricTypecmb.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.fabricTypecmb.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.fabricTypecmb.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.fabricTypecmb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.fabricTypecmb.ItemHeight = 30;
-            this.fabricTypecmb.Location = new System.Drawing.Point(24, 38);
-            this.fabricTypecmb.Name = "fabricTypecmb";
-            this.fabricTypecmb.Size = new System.Drawing.Size(113, 36);
-            this.fabricTypecmb.TabIndex = 0;
-            this.fabricTypecmb.SelectedIndexChanged += new System.EventHandler(this.fabricTypecmb_SelectedIndexChanged);
-            // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -77,6 +61,22 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(659, 483);
             this.panel2.TabIndex = 5;
+            // 
+            // fabricTypecmb
+            // 
+            this.fabricTypecmb.BackColor = System.Drawing.Color.Transparent;
+            this.fabricTypecmb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.fabricTypecmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fabricTypecmb.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.fabricTypecmb.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.fabricTypecmb.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fabricTypecmb.ForeColor = System.Drawing.Color.Black;
+            this.fabricTypecmb.ItemHeight = 30;
+            this.fabricTypecmb.Location = new System.Drawing.Point(24, 38);
+            this.fabricTypecmb.Name = "fabricTypecmb";
+            this.fabricTypecmb.Size = new System.Drawing.Size(113, 36);
+            this.fabricTypecmb.TabIndex = 0;
+            this.fabricTypecmb.SelectedIndexChanged += new System.EventHandler(this.fabricTypecmb_SelectedIndexChanged);
             // 
             // FabricsOrder
             // 

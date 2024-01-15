@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gWoodButton = new Guna.UI2.WinForms.Guna2Button();
@@ -45,9 +47,18 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.TotalPriceDisp = new System.Windows.Forms.Label();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.paymentMethodcmb = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.itemGetDAOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemGetDAOBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totalItemDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemGetDAOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemGetDAOBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -156,6 +167,10 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.paymentMethodcmb);
+            this.panel2.Controls.Add(this.guna2Button1);
+            this.panel2.Controls.Add(this.TotalPriceDisp);
             this.panel2.Controls.Add(this.totalItemDataGrid);
             this.panel2.Controls.Add(this.test);
             this.panel2.Controls.Add(this.label2);
@@ -189,14 +204,16 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.totalItemDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.totalItemDataGrid.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.totalItemDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            this.totalItemDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.deleteColumn});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.totalItemDataGrid.DefaultCellStyle = dataGridViewCellStyle4;
             this.totalItemDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
             this.totalItemDataGrid.Location = new System.Drawing.Point(9, 97);
             this.totalItemDataGrid.Name = "totalItemDataGrid";
@@ -224,6 +241,7 @@
             this.totalItemDataGrid.ThemeStyle.RowsStyle.Height = 22;
             this.totalItemDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.totalItemDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.totalItemDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.totalItemDataGrid_CellContentClick);
             // 
             // test
             // 
@@ -286,6 +304,85 @@
             this.label6.Tag = "";
             this.label6.Text = "Total Items";
             // 
+            // deleteColumn
+            // 
+            this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.deleteColumn.HeaderText = "";
+            this.deleteColumn.Name = "deleteColumn";
+            this.deleteColumn.Text = "Delete";
+            // 
+            // TotalPriceDisp
+            // 
+            this.TotalPriceDisp.AutoSize = true;
+            this.TotalPriceDisp.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalPriceDisp.Location = new System.Drawing.Point(6, 320);
+            this.TotalPriceDisp.Name = "TotalPriceDisp";
+            this.TotalPriceDisp.Size = new System.Drawing.Size(24, 18);
+            this.TotalPriceDisp.TabIndex = 19;
+            this.TotalPriceDisp.Text = "   .";
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.DimGray;
+            this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button1.Location = new System.Drawing.Point(44, 457);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(180, 45);
+            this.guna2Button1.TabIndex = 20;
+            this.guna2Button1.Text = "Check Out";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            // 
+            // paymentMethodcmb
+            // 
+            this.paymentMethodcmb.BackColor = System.Drawing.Color.Transparent;
+            this.paymentMethodcmb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.paymentMethodcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.paymentMethodcmb.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.paymentMethodcmb.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.paymentMethodcmb.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentMethodcmb.ForeColor = System.Drawing.Color.Black;
+            this.paymentMethodcmb.ItemHeight = 30;
+            this.paymentMethodcmb.Items.AddRange(new object[] {
+            "In-Store",
+            "G-Cash",
+            "Bank"});
+            this.paymentMethodcmb.Location = new System.Drawing.Point(9, 368);
+            this.paymentMethodcmb.Name = "paymentMethodcmb";
+            this.paymentMethodcmb.Size = new System.Drawing.Size(140, 36);
+            this.paymentMethodcmb.TabIndex = 21;
+            this.paymentMethodcmb.SelectedIndexChanged += new System.EventHandler(this.paymentMethodcmb_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 350);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 15);
+            this.label1.TabIndex = 22;
+            this.label1.Tag = "";
+            this.label1.Text = "Payment Method";
+            // 
+            // itemGetDAOBindingSource
+            // 
+            this.itemGetDAOBindingSource.DataSource = typeof(FDS_application.ItemGetDAO);
+            // 
+            // itemGetDAOBindingSource1
+            // 
+            this.itemGetDAOBindingSource1.DataSource = typeof(FDS_application.ItemGetDAO);
+            // 
             // OrderUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,6 +397,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totalItemDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemGetDAOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemGetDAOBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -320,5 +419,12 @@
         private System.Windows.Forms.Label recipientLabel;
         private Guna.UI2.WinForms.Guna2DataGridView totalItemDataGrid;
         private System.Windows.Forms.Button test;
+        private System.Windows.Forms.BindingSource itemGetDAOBindingSource;
+        private System.Windows.Forms.BindingSource itemGetDAOBindingSource1;
+        private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
+        private System.Windows.Forms.Label TotalPriceDisp;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2ComboBox paymentMethodcmb;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using FDS_application.UserControls;
 using MySql.Data.MySqlClient;
 
 public class CustomerDAO
@@ -289,5 +290,48 @@ public class CustomerDAO
             return false;
         }
     }
+    public bool UpdateOrderTransactionAndAddPayment(int orderId, decimal totalPrice, string paymentMethod)
+    {
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
 
+                // Begin a database transaction
+                using (MySqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Update the order transaction with the payment details
+                        string updateOrderTransactionQuery = "UPDATE tb_order_transaction SET total_price = @TotalPrice, payment_method = @PaymentMethod WHERE order_id = @OrderId";
+                        MySqlCommand updateOrderTransactionCommand = new MySqlCommand(updateOrderTransactionQuery, connection, transaction);
+
+                        updateOrderTransactionCommand.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                        updateOrderTransactionCommand.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
+                        updateOrderTransactionCommand.Parameters.AddWithValue("@OrderId", orderId);
+
+                        int rowsAffectedTransaction = updateOrderTransactionCommand.ExecuteNonQuery();
+
+                        // Commit the transaction if everything is successful
+                        transaction.Commit();
+
+                        return rowsAffectedTransaction > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        // Rollback the transaction on failure
+                        transaction.Rollback();
+                        Console.WriteLine($"Error updating order transaction and adding payment: {ex.Message}");
+                        return false;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error opening connection: {ex.Message}");
+            return false;
+        }
+    }
 }

@@ -15,6 +15,7 @@ namespace FDS_application.UserControls
         BindingSource totalItemsBindingSource = new BindingSource();
         private int orderId;
         ItemGetDAO itemDAO = new ItemGetDAO();
+        CustomerDAO cusDAO = new CustomerDAO();
 
 
         public OrderUC()
@@ -24,9 +25,12 @@ namespace FDS_application.UserControls
             itemDAO.SetOrderId(orderId);
 
             itemDAO.DataChanged += ItemDAO_DataChanged;
+            itemDAO.DataChanged += UpdateTotalPriceDisplay;
+
 
             totalItemsBindingSource.DataSource = itemDAO.GetItems();
             totalItemDataGrid.DataSource = totalItemsBindingSource;
+
 
         }
         public void SetRecipientName(string firstName, string lastName)
@@ -109,5 +113,54 @@ namespace FDS_application.UserControls
 
         }
 
+        private void totalItemDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the clicked cell is in the column where you want to trigger the deletion
+            // Check if the clicked cell is in the button column
+            if (e.ColumnIndex == totalItemDataGrid.Columns["deleteColumn"].Index && e.RowIndex >= 0)
+            {
+                // Get the order item ID from the selected row
+                int orderItemId = Convert.ToInt32(totalItemDataGrid.Rows[e.RowIndex].Cells["ID"].Value);
+
+                // Call the DAO method to delete the order item
+                itemDAO.DeleteOrderItem(orderItemId);
+
+                // Remove the row from the DataGridView
+                totalItemDataGrid.Rows.RemoveAt(e.RowIndex);
+
+                // Optional: Update any totals or refresh the DataGridView
+                // totalItemDataGrid.Refresh();
+            }
+        }
+        public void UpdateTotalPriceDisplay(object sender, EventArgs e)
+        {
+            // Update the text of the label based on the entered quantity and size
+            TotalPriceDisp.Text = $"{itemDAO.GetSumOfUnitPrices(this.orderId)} PHP";
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            // Check if an item is selected in the ComboBox
+            if (paymentMethodcmb.SelectedIndex != -1)
+            {
+                // Get the selected payment method
+                string paymentMethod = paymentMethodcmb.SelectedItem.ToString();
+
+                // Now you can use the paymentMethod variable in your method call
+                cusDAO.UpdateOrderTransactionAndAddPayment(orderId, itemDAO.GetSumOfUnitPrices(this.orderId), paymentMethod);
+                MessageBox.Show("SUcces");
+
+            }
+            else
+            {
+                // Handle the case where no payment method is selected
+                MessageBox.Show("Please select a payment method.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void paymentMethodcmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
