@@ -16,7 +16,7 @@ namespace FDS_application
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Tst());
+            Application.Run(new dashOrder());
         }
     }
 }

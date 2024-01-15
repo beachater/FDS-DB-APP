@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using MaterialSkin;
+using FDS_application.UserControls;
 
 namespace FDS_application
 {
@@ -133,5 +134,30 @@ namespace FDS_application
             //this.showOrderPanel.Visible = false;
             //this.showSuppliesPanel.Visible = true;
         }
+        
+        private void addUserControl(UserControl userControl)
+        {
+            userControl.Dock = DockStyle.Fill;
+            dashboardPanel.Controls.Clear();
+            dashboardPanel.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+        private void gOrderButton_Click(object sender, EventArgs e)
+        {
+            customerInfoUC uc = new customerInfoUC();
+            addUserControl(uc);
+        }
+
+        private void panel1_Paint_3(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gSuppliesButton_Click(object sender, EventArgs e)
+        {
+            SuppliesUC uc1 = new SuppliesUC();
+            addUserControl(uc1);
+        }
+    
     }
 }
