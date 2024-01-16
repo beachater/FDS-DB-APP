@@ -274,6 +274,39 @@ namespace FDS_application
             return sumOfUnitPrices;
         }
 
+        public void UpdateOrderStatus(int orderId, string newStatus)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "UPDATE tb_order_transaction SET status = @NewStatus WHERE order_id = @OrderID";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@NewStatus", newStatus);
+                        command.Parameters.AddWithValue("@OrderID", orderId);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine($"Order status updated successfully to: {newStatus}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No rows were updated. Order ID may not exist.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error updating order status: {ex.Message}");
+            }
+        }
     }
 
 
