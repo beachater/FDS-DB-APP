@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gWoodButton = new Guna.UI2.WinForms.Guna2Button();
             this.gGlassButton = new Guna.UI2.WinForms.Guna2Button();
@@ -40,18 +40,18 @@
             this.gFabricsbutton = new Guna.UI2.WinForms.Guna2Button();
             this.ordersPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.paymentMethodcmb = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.TotalPriceDisp = new System.Windows.Forms.Label();
             this.totalItemDataGrid = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.test = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.recipientLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.TotalPriceDisp = new System.Windows.Forms.Label();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.paymentMethodcmb = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.itemGetDAOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemGetDAOBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
@@ -184,36 +184,94 @@
             this.panel2.Size = new System.Drawing.Size(268, 518);
             this.panel2.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 350);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 15);
+            this.label1.TabIndex = 22;
+            this.label1.Tag = "";
+            this.label1.Text = "Payment Method";
+            // 
+            // paymentMethodcmb
+            // 
+            this.paymentMethodcmb.BackColor = System.Drawing.Color.Transparent;
+            this.paymentMethodcmb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.paymentMethodcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.paymentMethodcmb.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.paymentMethodcmb.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.paymentMethodcmb.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentMethodcmb.ForeColor = System.Drawing.Color.Black;
+            this.paymentMethodcmb.ItemHeight = 30;
+            this.paymentMethodcmb.Items.AddRange(new object[] {
+            "In-Store",
+            "G-Cash",
+            "Bank"});
+            this.paymentMethodcmb.Location = new System.Drawing.Point(9, 368);
+            this.paymentMethodcmb.Name = "paymentMethodcmb";
+            this.paymentMethodcmb.Size = new System.Drawing.Size(140, 36);
+            this.paymentMethodcmb.TabIndex = 21;
+            this.paymentMethodcmb.SelectedIndexChanged += new System.EventHandler(this.paymentMethodcmb_SelectedIndexChanged);
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.DimGray;
+            this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button1.Location = new System.Drawing.Point(44, 457);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(180, 45);
+            this.guna2Button1.TabIndex = 20;
+            this.guna2Button1.Text = "Check Out";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            // 
+            // TotalPriceDisp
+            // 
+            this.TotalPriceDisp.AutoSize = true;
+            this.TotalPriceDisp.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalPriceDisp.Location = new System.Drawing.Point(6, 320);
+            this.TotalPriceDisp.Name = "TotalPriceDisp";
+            this.TotalPriceDisp.Size = new System.Drawing.Size(24, 18);
+            this.TotalPriceDisp.TabIndex = 19;
+            this.TotalPriceDisp.Text = "   .";
+            // 
             // totalItemDataGrid
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Red;
-            this.totalItemDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Red;
+            this.totalItemDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.totalItemDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.totalItemDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveBorder;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.totalItemDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.totalItemDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.totalItemDataGrid.ColumnHeadersHeight = 30;
             this.totalItemDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deleteColumn});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.totalItemDataGrid.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.totalItemDataGrid.DefaultCellStyle = dataGridViewCellStyle12;
             this.totalItemDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
             this.totalItemDataGrid.Location = new System.Drawing.Point(9, 97);
             this.totalItemDataGrid.Name = "totalItemDataGrid";
@@ -242,6 +300,19 @@
             this.totalItemDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.totalItemDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.totalItemDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.totalItemDataGrid_CellContentClick);
+            // 
+            // deleteColumn
+            // 
+            this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            this.deleteColumn.HeaderText = "";
+            this.deleteColumn.Name = "deleteColumn";
+            this.deleteColumn.Text = "Delete";
             // 
             // test
             // 
@@ -303,77 +374,6 @@
             this.label6.TabIndex = 11;
             this.label6.Tag = "";
             this.label6.Text = "Total Items";
-            // 
-            // deleteColumn
-            // 
-            this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.deleteColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.deleteColumn.HeaderText = "";
-            this.deleteColumn.Name = "deleteColumn";
-            this.deleteColumn.Text = "Delete";
-            // 
-            // TotalPriceDisp
-            // 
-            this.TotalPriceDisp.AutoSize = true;
-            this.TotalPriceDisp.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalPriceDisp.Location = new System.Drawing.Point(6, 320);
-            this.TotalPriceDisp.Name = "TotalPriceDisp";
-            this.TotalPriceDisp.Size = new System.Drawing.Size(24, 18);
-            this.TotalPriceDisp.TabIndex = 19;
-            this.TotalPriceDisp.Text = "   .";
-            // 
-            // guna2Button1
-            // 
-            this.guna2Button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.DimGray;
-            this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button1.Location = new System.Drawing.Point(44, 457);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(180, 45);
-            this.guna2Button1.TabIndex = 20;
-            this.guna2Button1.Text = "Check Out";
-            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
-            // 
-            // paymentMethodcmb
-            // 
-            this.paymentMethodcmb.BackColor = System.Drawing.Color.Transparent;
-            this.paymentMethodcmb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.paymentMethodcmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.paymentMethodcmb.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.paymentMethodcmb.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.paymentMethodcmb.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.paymentMethodcmb.ForeColor = System.Drawing.Color.Black;
-            this.paymentMethodcmb.ItemHeight = 30;
-            this.paymentMethodcmb.Items.AddRange(new object[] {
-            "In-Store",
-            "G-Cash",
-            "Bank"});
-            this.paymentMethodcmb.Location = new System.Drawing.Point(9, 368);
-            this.paymentMethodcmb.Name = "paymentMethodcmb";
-            this.paymentMethodcmb.Size = new System.Drawing.Size(140, 36);
-            this.paymentMethodcmb.TabIndex = 21;
-            this.paymentMethodcmb.SelectedIndexChanged += new System.EventHandler(this.paymentMethodcmb_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 350);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 15);
-            this.label1.TabIndex = 22;
-            this.label1.Tag = "";
-            this.label1.Text = "Payment Method";
             // 
             // itemGetDAOBindingSource
             // 

@@ -123,7 +123,7 @@ namespace FDS_application.UserControls
                 int orderItemId = Convert.ToInt32(totalItemDataGrid.Rows[e.RowIndex].Cells["ID"].Value);
 
                 // Call the DAO method to delete the order item
-                itemDAO.DeleteOrderItem(orderItemId);
+                itemDAO.DeleteOrderItemSpecifications(orderItemId);
 
                 // Remove the row from the DataGridView
                 totalItemDataGrid.Rows.RemoveAt(e.RowIndex);

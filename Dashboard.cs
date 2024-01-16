@@ -162,7 +162,8 @@ namespace FDS_application
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-
+            SeeOrders soUc = new SeeOrders();
+            addUserControl(soUc);
         }
 
     }

@@ -71,7 +71,7 @@ namespace FDS_application
 
             return returnThese;
         }
-        public void DeleteOrderItem(int orderItemId)
+        public void DeleteOrderItemSpecifications(int orderItemId)
         {
             try
             {
@@ -118,7 +118,131 @@ namespace FDS_application
                 Console.WriteLine($"Error deleting order item: {ex.Message}");
             }
         }
+        public void DeleteOrderItem(int orderItemId)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
 
+                    // Start a transaction
+                    using (MySqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                                                      // Delete from parent table
+                            string parentQuery = "DELETE FROM tb_order_items WHERE order_item_id = @OrderItemId";
+                            using (MySqlCommand parentCommand = new MySqlCommand(parentQuery, connection, transaction))
+                            {
+                                parentCommand.Parameters.AddWithValue("@OrderItemId", orderItemId);
+                                parentCommand.ExecuteNonQuery();
+                            }
+
+                            // Commit the transaction if everything is successful
+                            transaction.Commit();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            // Rollback the transaction if an error occurs
+                            transaction.Rollback();
+                            Console.WriteLine($"Error deleting order item: {ex.Message}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting order item: {ex.Message}");
+            }
+        }
+        public void DeleteOrderTransaction(int orderId)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Start a transaction
+                    using (MySqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            // Get order item IDs associated with the order ID
+                            List<int> orderItemIds = GetOrderItemIds(orderId, connection, transaction);
+
+                            if (orderItemIds.Count > 0)
+                            {
+                                // Delete from child table (order items specifications)
+                                string childQuery = "DELETE FROM tb_order_items_specification WHERE order_item_id IN (" + string.Join(",", orderItemIds) + ")";
+                                using (MySqlCommand childCommand = new MySqlCommand(childQuery, connection, transaction))
+                                {
+                                    childCommand.ExecuteNonQuery();
+                                }
+
+                                // Delete from parent table (order items)
+                                string parentQuery = "DELETE FROM tb_order_items WHERE order_id = @OrderID";
+                                using (MySqlCommand parentCommand = new MySqlCommand(parentQuery, connection, transaction))
+                                {
+                                    parentCommand.Parameters.AddWithValue("@OrderID", orderId);
+                                    parentCommand.ExecuteNonQuery();
+                                }
+                            }
+
+                            // Delete from grandparent table (order transaction)
+                            string grandparentQuery = "DELETE FROM tb_order_transaction WHERE order_id = @OrderID";
+                            using (MySqlCommand grandparentCommand = new MySqlCommand(grandparentQuery, connection, transaction))
+                            {
+                                grandparentCommand.Parameters.AddWithValue("@OrderID", orderId);
+                                grandparentCommand.ExecuteNonQuery();
+                            }
+
+                            // Commit the transaction if everything is successful
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            // Rollback the transaction if an error occurs
+                            transaction.Rollback();
+                            Console.WriteLine($"Error deleting order transaction: {ex.Message}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting order transaction: {ex.Message}");
+            }
+        }
+
+        private List<int> GetOrderItemIds(int orderId, MySqlConnection connection, MySqlTransaction transaction)
+        {
+            List<int> orderItemIds = new List<int>();
+            try
+            {
+                string query = "SELECT order_item_id FROM tb_order_items WHERE order_id = @OrderID";
+                using (MySqlCommand command = new MySqlCommand(query, connection, transaction))
+                {
+                    command.Parameters.AddWithValue("@OrderID", orderId);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            orderItemIds.Add(Convert.ToInt32(reader["order_item_id"]));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting order item IDs: {ex.Message}");
+            }
+
+            return orderItemIds;
+        }
         public decimal GetSumOfUnitPrices(int order_id)
         {
             decimal sumOfUnitPrices = 0;

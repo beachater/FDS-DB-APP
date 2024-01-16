@@ -148,6 +148,8 @@
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemGetDAO.cs" />
+    <Compile Include="SeeOrder.cs" />
+    <Compile Include="SeeOrderDAO.cs" />
     <Compile Include="TotalItemList.cs" />
     <Compile Include="UserControls\LacesFabric.cs">
       <SubType>UserControl</SubType>
@@ -205,6 +207,12 @@
     </Compile>
     <Compile Include="UserControls\PlaqueGlass.Designer.cs">
       <DependentUpon>PlaqueGlass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SeeOrders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SeeOrders.Designer.cs">
+      <DependentUpon>SeeOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SuppliesUC.cs">
       <SubType>UserControl</SubType>
@@ -273,6 +281,9 @@
     <EmbeddedResource Include="UserControls\PlaqueGlass.resx">
       <DependentUpon>PlaqueGlass.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SeeOrders.resx">
+      <DependentUpon>SeeOrders.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SuppliesUC.resx">
       <DependentUpon>SuppliesUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -284,6 +295,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ItemGetDAO.datasource" />
+    <None Include="Properties\DataSources\SeeOrder.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
