@@ -307,6 +307,38 @@ namespace FDS_application
                 Console.WriteLine($"Error updating order status: {ex.Message}");
             }
         }
+        public string GetOrderStatus(int orderId)
+        {
+            string status = null;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT status FROM tb_order_transaction WHERE order_id = @OrderID";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderID", orderId);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            status = result.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting order status: {ex.Message}");
+            }
+
+            return status;
+        }
     }
 
 

@@ -25,7 +25,8 @@ namespace FDS_application.UserControls
             //dataGridView1.DataSource = seeOrderBindingSource;
             guna2DataGridView1.DataSource = seeOrderBindingSource;
             guna2DataGridView1.Refresh();
-         
+            guna2DataGridView1.DataBindingComplete += Guna2DataGridView1_DataBindingComplete;
+
 
 
         }
@@ -134,6 +135,24 @@ namespace FDS_application.UserControls
             else
             {
                 Console.WriteLine($"Column with name '{columnName}' does not exist.");
+            }
+        }
+        private void Guna2DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            // Iterate through each row and set the selected value for the ComboBox cell
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+            {
+                // Get the order ID from the "OrderID" column
+                int orderId = Convert.ToInt32(row.Cells["OrderID"].Value);
+
+                // Get the status for the order from the database
+                string status = dao.GetOrderStatus(orderId);
+
+                // Find the ComboBox column by name
+                DataGridViewComboBoxColumn cmbStatusColumn = guna2DataGridView1.Columns["cmbStatus"] as DataGridViewComboBoxColumn;
+
+                // Set the selected value for the ComboBox cell in the current row
+                row.Cells[cmbStatusColumn.Index].Value = status;
             }
         }
     }
