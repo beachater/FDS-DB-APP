@@ -39,6 +39,17 @@ namespace FDS_application
             corel,
             illustrator
         }
+        public class SeeSupplyOrdered 
+        {
+            public int SupplyID { get; set; }
+            public int Quantity { get; set; } 
+            public decimal Amount { get; set; }
+            public DateTime Date { get; set; }
+            public string Product {  get; set; }
+        }
+
+
+
         public class SeeOrderItem
         {
             public int ItemID { get; set; }
@@ -103,7 +114,7 @@ namespace FDS_application
                 {
                     connection.Open();
 
-                    string query = "SELECT oi.order_item_id, p.product_name, oi.quantity, pc.category_name, p.design_requirements, ois.size, ois.design, ois.material, ois.customer_note FROM tb_order_items oi JOIN tb_product p ON oi.sku = p.sku JOIN tb_product_categories pc ON p.category_id = pc.category_id LEFT JOIN tb_order_items_specification ois ON oi.order_item_id = ois.order_item_id WHERE oi.order_id = @OrderId";
+                    string query = "SELECT oi.order_item_id, p.product_name, oi.quantity, pc.category_name, pc.design_requirements, ois.size, ois.design, ois.material, ois.customer_note FROM tb_order_items oi JOIN tb_product p ON oi.sku = p.sku JOIN tb_product_categories pc ON p.category_id = pc.category_id LEFT JOIN tb_order_items_specification ois ON oi.order_item_id = ois.order_item_id WHERE oi.order_id = @OrderId";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -141,6 +152,125 @@ namespace FDS_application
 
             return returnThese;
         }
+
+        public List<string> GetProducts()
+        {
+            List<string> products = new List<string>();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (MySqlCommand command = new MySqlCommand("SELECT product_name FROM `tb_product`;", connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                products.Add(reader.GetString(0));  // Assuming product_name is the first column
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                // Handle any MySQL-related errors gracefully
+                Console.WriteLine("Error retrieving fabric types: " + ex.Message);
+                throw;  // Rethrow the exception to propagate it back to the caller
+            }
+
+            return products;  // Ensure a value is always returned
+        }
+        public List<string> GetSupplierNames(string productName)
+        {
+            List<string> supplierNames = new List<string>();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+                SELECT s.supplier_name
+                FROM tb_suppliers s
+                JOIN tb_product p ON s.category_id = p.category_id
+                WHERE p.product_name = @ProductName;";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ProductName", productName);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                supplierNames.Add(reader.GetString("supplier_name"));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                // Handle any MySQL-related errors gracefully
+                Console.WriteLine("Error retrieving supplier names: " + ex.Message);
+                throw;  // Rethrow the exception to propagate it back to the caller
+            }
+
+            return supplierNames;
+        }
+        public List<SeeSupplyOrdered> GetSupplyOrders()
+        {
+            List<SeeSupplyOrdered> supplyOrders = new List<SeeSupplyOrdered>();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+                    SELECT so.SOrder_ID, so.Quantity, so.Amount, so.Date_Ordered, p.product_name
+                    FROM tb_supply_order so
+                    JOIN tb_product p ON so.SKU = p.sku
+                    WHERE so.In_stock = 0";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                SeeSupplyOrdered supplyOrder = new SeeSupplyOrdered
+                                {
+                                    SupplyID = Convert.ToInt32(reader["SOrder_ID"]),
+                                    Quantity = Convert.ToInt32(reader["Quantity"]),
+                                    Amount = Convert.ToDecimal(reader["Amount"]),
+                                    Date = Convert.ToDateTime(reader["Date_Ordered"]),
+                                    Product = reader["product_name"].ToString()
+                                };
+
+                                supplyOrders.Add(supplyOrder);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                // Handle any MySQL-related errors gracefully
+                Console.WriteLine("Error retrieving supply orders: " + ex.Message);
+                throw;  // Rethrow the exception to propagate it back to the caller
+            }
+
+            return supplyOrders;
+        }
     }
 
-    }
+
+
+}

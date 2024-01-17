@@ -32,11 +32,12 @@
             this.dashboard_top = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dashboardSide = new System.Windows.Forms.Panel();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.gSuppliesButton = new Guna.UI2.WinForms.Guna2Button();
             this.gOrderButton = new Guna.UI2.WinForms.Guna2Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dashboardPanel = new System.Windows.Forms.Panel();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.dashboard_top.SuspendLayout();
             this.dashboardSide.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +64,7 @@
             // dashboardSide
             // 
             this.dashboardSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            this.dashboardSide.Controls.Add(this.guna2Button2);
             this.dashboardSide.Controls.Add(this.guna2Button1);
             this.dashboardSide.Controls.Add(this.gSuppliesButton);
             this.dashboardSide.Controls.Add(this.gOrderButton);
@@ -73,12 +75,37 @@
             this.dashboardSide.Size = new System.Drawing.Size(208, 570);
             this.dashboardSide.TabIndex = 1;
             // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BackColor = System.Drawing.Color.DimGray;
+            this.guna2Button1.BackgroundImage = global::FDS_application.Properties.Resources.icons8_home_50;
+            this.guna2Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.guna2Button1.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.guna2Button1.Checked = true;
+            this.guna2Button1.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
+            this.guna2Button1.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button1.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
+            this.guna2Button1.Location = new System.Drawing.Point(1, 112);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(208, 56);
+            this.guna2Button1.TabIndex = 9;
+            this.guna2Button1.Text = "Orders";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            // 
             // gSuppliesButton
             // 
             this.gSuppliesButton.BackColor = System.Drawing.Color.DimGray;
             this.gSuppliesButton.BackgroundImage = global::FDS_application.Properties.Resources.icons8_home_50;
             this.gSuppliesButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.gSuppliesButton.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.gSuppliesButton.Checked = true;
             this.gSuppliesButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
             this.gSuppliesButton.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.gSuppliesButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -89,7 +116,7 @@
             this.gSuppliesButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gSuppliesButton.ForeColor = System.Drawing.Color.Black;
             this.gSuppliesButton.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
-            this.gSuppliesButton.Location = new System.Drawing.Point(1, 112);
+            this.gSuppliesButton.Location = new System.Drawing.Point(1, 168);
             this.gSuppliesButton.Name = "gSuppliesButton";
             this.gSuppliesButton.Size = new System.Drawing.Size(208, 56);
             this.gSuppliesButton.TabIndex = 8;
@@ -102,6 +129,7 @@
             this.gOrderButton.BackgroundImage = global::FDS_application.Properties.Resources.icons8_home_50;
             this.gOrderButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.gOrderButton.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.gOrderButton.Checked = true;
             this.gOrderButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
             this.gOrderButton.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.gOrderButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -138,28 +166,29 @@
             this.dashboardPanel.TabIndex = 4;
             this.dashboardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_3);
             // 
-            // guna2Button1
+            // guna2Button2
             // 
-            this.guna2Button1.BackColor = System.Drawing.Color.DimGray;
-            this.guna2Button1.BackgroundImage = global::FDS_application.Properties.Resources.icons8_home_50;
-            this.guna2Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.guna2Button1.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.guna2Button1.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
-            this.guna2Button1.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button1.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
-            this.guna2Button1.Location = new System.Drawing.Point(1, 56);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(208, 56);
-            this.guna2Button1.TabIndex = 9;
-            this.guna2Button1.Text = "Orders";
-            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            this.guna2Button2.BackColor = System.Drawing.Color.DimGray;
+            this.guna2Button2.BackgroundImage = global::FDS_application.Properties.Resources.icons8_home_50;
+            this.guna2Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.guna2Button2.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.guna2Button2.Checked = true;
+            this.guna2Button2.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
+            this.guna2Button2.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            this.guna2Button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button2.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button2.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(100)))), ((int)(((byte)(36)))));
+            this.guna2Button2.Location = new System.Drawing.Point(1, 56);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.Size = new System.Drawing.Size(208, 56);
+            this.guna2Button2.TabIndex = 10;
+            this.guna2Button2.Text = "Supplies";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // dashOrder
             // 
@@ -192,5 +221,6 @@
         private System.Windows.Forms.Panel dashboardPanel;
         private Guna.UI2.WinForms.Guna2Button gSuppliesButton;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
     }
 }

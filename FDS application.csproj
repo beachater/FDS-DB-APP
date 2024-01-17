@@ -148,6 +148,7 @@
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemGetDAO.cs" />
+    <Compile Include="Order_SuppliesDAO.cs" />
     <Compile Include="SeeOrder.cs" />
     <Compile Include="SeeOrderDAO.cs" />
     <Compile Include="TotalItemList.cs" />
