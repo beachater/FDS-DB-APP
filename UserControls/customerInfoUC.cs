@@ -72,8 +72,12 @@ namespace FDS_application.UserControls
             string firstName = firstnameTxt.Text;
             string lastName = lastnameTxt.Text;
             string phoneNum = contactnumTxt.Text;
-           
 
+            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
+            {
+                MessageBox.Show("Please fill in both first name and last name.");
+                return;
+            }
             bool success = cusDAO.InsertCustomer(firstName, lastName, phoneNum);
 
             if (success)

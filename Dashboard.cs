@@ -168,7 +168,8 @@ namespace FDS_application
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-
+            OrderHistory ohUC = new OrderHistory();
+            addUserControl(ohUC);
         }
     }
 }

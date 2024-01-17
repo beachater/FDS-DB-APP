@@ -148,6 +148,13 @@
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemGetDAO.cs" />
+    <Compile Include="OrderHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderHistory.Designer.cs">
+      <DependentUpon>OrderHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderHistoryDAO.cs" />
     <Compile Include="Order_SuppliesDAO.cs" />
     <Compile Include="SeeOrder.cs" />
     <Compile Include="SeeOrderDAO.cs" />
@@ -244,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderHistory.resx">
+      <DependentUpon>OrderHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\LacesFabric.resx">
       <DependentUpon>LacesFabric.cs</DependentUpon>

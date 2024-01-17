@@ -59,3 +59,4 @@ D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UserCon
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UserControls.customerInfoUC.resources
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UserControls.MedalGlass.resources
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UserControls.SeeOrders.resources
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.OrderHistory.resources

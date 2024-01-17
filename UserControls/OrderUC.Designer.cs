@@ -46,7 +46,6 @@
             this.TotalPriceDisp = new System.Windows.Forms.Label();
             this.totalItemDataGrid = new Guna.UI2.WinForms.Guna2DataGridView();
             this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.test = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.recipientLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -159,6 +158,7 @@
             // 
             // ordersPanel
             // 
+            this.ordersPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.ordersPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.ordersPanel.Location = new System.Drawing.Point(0, 52);
             this.ordersPanel.Name = "ordersPanel";
@@ -172,7 +172,6 @@
             this.panel2.Controls.Add(this.guna2Button1);
             this.panel2.Controls.Add(this.TotalPriceDisp);
             this.panel2.Controls.Add(this.totalItemDataGrid);
-            this.panel2.Controls.Add(this.test);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.recipientLabel);
             this.panel2.Controls.Add(this.label9);
@@ -314,16 +313,6 @@
             this.deleteColumn.Name = "deleteColumn";
             this.deleteColumn.Text = "Delete";
             // 
-            // test
-            // 
-            this.test.Location = new System.Drawing.Point(125, 59);
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(75, 23);
-            this.test.TabIndex = 18;
-            this.test.Text = "test button";
-            this.test.UseVisualStyleBackColor = true;
-            this.test.Click += new System.EventHandler(this.test_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -418,7 +407,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label recipientLabel;
         private Guna.UI2.WinForms.Guna2DataGridView totalItemDataGrid;
-        private System.Windows.Forms.Button test;
         private System.Windows.Forms.BindingSource itemGetDAOBindingSource;
         private System.Windows.Forms.BindingSource itemGetDAOBindingSource1;
         private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
