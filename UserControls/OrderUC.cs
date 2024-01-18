@@ -28,8 +28,8 @@ namespace FDS_application.UserControls
             itemDAO.DataChanged += UpdateTotalPriceDisplay;
 
 
-            totalItemsBindingSource.DataSource = itemDAO.GetItems();
-            totalItemDataGrid.DataSource = totalItemsBindingSource;
+            //totalItemsBindingSource.DataSource = itemDAO.GetItems();
+            //totalItemDataGrid.DataSource = totalItemsBindingSource;
 
 
         }
@@ -98,8 +98,11 @@ namespace FDS_application.UserControls
         }
         private void ItemDAO_DataChanged(object sender, EventArgs e)
         {
-            totalItemsBindingSource.DataSource = itemDAO.GetItems();
+            totalItemDataGrid.Columns["deleteColumn"].Visible = true;
             itemDAO.SetOrderId(orderId);
+            totalItemsBindingSource.DataSource = itemDAO.GetItems();
+            totalItemDataGrid.DataSource = totalItemsBindingSource;
+            
             totalItemsBindingSource.ResetBindings(false);
         }
 

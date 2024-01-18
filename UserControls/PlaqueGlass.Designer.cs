@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
+            this.priceDisplay3 = new System.Windows.Forms.Label();
+            this.noteTxt = new System.Windows.Forms.RichTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.DesignTxt = new System.Windows.Forms.TextBox();
@@ -37,16 +41,13 @@
             this.SizeTxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.QuantityTxt = new System.Windows.Forms.TextBox();
-            this.priceDisplay3 = new System.Windows.Forms.Label();
-            this.noteTxt = new System.Windows.Forms.RichTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.panel3.Controls.Add(this.priceDisplay3);
             this.panel3.Controls.Add(this.noteTxt);
             this.panel3.Controls.Add(this.label5);
@@ -64,8 +65,48 @@
             this.panel3.Size = new System.Drawing.Size(391, 483);
             this.panel3.TabIndex = 13;
             // 
+            // priceDisplay3
+            // 
+            this.priceDisplay3.AutoSize = true;
+            this.priceDisplay3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceDisplay3.Location = new System.Drawing.Point(16, 327);
+            this.priceDisplay3.Name = "priceDisplay3";
+            this.priceDisplay3.Size = new System.Drawing.Size(15, 16);
+            this.priceDisplay3.TabIndex = 23;
+            this.priceDisplay3.Text = "..";
+            // 
+            // noteTxt
+            // 
+            this.noteTxt.Location = new System.Drawing.Point(18, 158);
+            this.noteTxt.Name = "noteTxt";
+            this.noteTxt.Size = new System.Drawing.Size(358, 77);
+            this.noteTxt.TabIndex = 22;
+            this.noteTxt.Text = "";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(16, 139);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(102, 16);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Customer Note";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(15, 299);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 16);
+            this.label8.TabIndex = 20;
+            this.label8.Tag = "";
+            this.label8.Text = "Price";
+            // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.panel2.Controls.Add(this.guna2Button1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 411);
@@ -142,45 +183,6 @@
             this.QuantityTxt.Size = new System.Drawing.Size(100, 20);
             this.QuantityTxt.TabIndex = 4;
             this.QuantityTxt.TextChanged += new System.EventHandler(this.quantityTxt_TextChanged);
-            // 
-            // priceDisplay3
-            // 
-            this.priceDisplay3.AutoSize = true;
-            this.priceDisplay3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceDisplay3.Location = new System.Drawing.Point(16, 327);
-            this.priceDisplay3.Name = "priceDisplay3";
-            this.priceDisplay3.Size = new System.Drawing.Size(15, 16);
-            this.priceDisplay3.TabIndex = 23;
-            this.priceDisplay3.Text = "..";
-            // 
-            // noteTxt
-            // 
-            this.noteTxt.Location = new System.Drawing.Point(18, 158);
-            this.noteTxt.Name = "noteTxt";
-            this.noteTxt.Size = new System.Drawing.Size(358, 77);
-            this.noteTxt.TabIndex = 22;
-            this.noteTxt.Text = "";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 139);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 16);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Customer Note";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(15, 299);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 16);
-            this.label8.TabIndex = 20;
-            this.label8.Tag = "";
-            this.label8.Text = "Price";
             // 
             // PlaqueGlass
             // 

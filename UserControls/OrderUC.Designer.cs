@@ -45,7 +45,6 @@
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.TotalPriceDisp = new System.Windows.Forms.Label();
             this.totalItemDataGrid = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.recipientLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.itemGetDAOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemGetDAOBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.totalItemDataGrid)).BeginInit();
@@ -237,9 +237,9 @@
             this.TotalPriceDisp.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotalPriceDisp.Location = new System.Drawing.Point(6, 320);
             this.TotalPriceDisp.Name = "TotalPriceDisp";
-            this.TotalPriceDisp.Size = new System.Drawing.Size(24, 18);
+            this.TotalPriceDisp.Size = new System.Drawing.Size(46, 18);
             this.TotalPriceDisp.TabIndex = 19;
-            this.TotalPriceDisp.Text = "   .";
+            this.TotalPriceDisp.Text = "0 PHP";
             // 
             // totalItemDataGrid
             // 
@@ -251,11 +251,11 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Red;
             this.totalItemDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.totalItemDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.totalItemDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            this.totalItemDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(65)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveBorder;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Red;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -264,14 +264,14 @@
             this.totalItemDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.deleteColumn});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.totalItemDataGrid.DefaultCellStyle = dataGridViewCellStyle4;
-            this.totalItemDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            this.totalItemDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(65)))));
             this.totalItemDataGrid.Location = new System.Drawing.Point(9, 100);
             this.totalItemDataGrid.Name = "totalItemDataGrid";
             this.totalItemDataGrid.RowHeadersVisible = false;
@@ -282,8 +282,8 @@
             this.totalItemDataGrid.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
             this.totalItemDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.totalItemDataGrid.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.totalItemDataGrid.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            this.totalItemDataGrid.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
+            this.totalItemDataGrid.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
+            this.totalItemDataGrid.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(65)))));
             this.totalItemDataGrid.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.totalItemDataGrid.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.totalItemDataGrid.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -299,19 +299,6 @@
             this.totalItemDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.totalItemDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.totalItemDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.totalItemDataGrid_CellContentClick);
-            // 
-            // deleteColumn
-            // 
-            this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.IndianRed;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.deleteColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.deleteColumn.HeaderText = "";
-            this.deleteColumn.Name = "deleteColumn";
-            this.deleteColumn.Text = "Delete";
             // 
             // label2
             // 
@@ -372,6 +359,20 @@
             // 
             this.itemGetDAOBindingSource1.DataSource = typeof(FDS_application.ItemGetDAO);
             // 
+            // deleteColumn
+            // 
+            this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.IndianRed;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.deleteColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.deleteColumn.HeaderText = ".....";
+            this.deleteColumn.Name = "deleteColumn";
+            this.deleteColumn.Text = "Delete";
+            this.deleteColumn.UseColumnTextForButtonValue = true;
+            // 
             // OrderUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,10 +410,10 @@
         private Guna.UI2.WinForms.Guna2DataGridView totalItemDataGrid;
         private System.Windows.Forms.BindingSource itemGetDAOBindingSource;
         private System.Windows.Forms.BindingSource itemGetDAOBindingSource1;
-        private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
         private System.Windows.Forms.Label TotalPriceDisp;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2ComboBox paymentMethodcmb;
+        private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
     }
 }

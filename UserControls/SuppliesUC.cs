@@ -1,12 +1,5 @@
-﻿using Guna.UI2.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FDS_application.UserControls
@@ -77,7 +70,7 @@ namespace FDS_application.UserControls
         {
             LoadProducts();
         }
-    
+
         private void productCmb_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadSuppliers();
@@ -158,7 +151,7 @@ namespace FDS_application.UserControls
 
         }
 
-        
+
 
         private void SODataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -177,10 +170,29 @@ namespace FDS_application.UserControls
                 // Update the database with the new value
                 supDAO.UpdateInStockStatus(supplyId, isChecked, sku);
             }
+            else if (e.ColumnIndex == SODataGridView.Columns["supDelete"].Index && e.RowIndex >= 0)
+            {
+                // Get the order item ID from the selected row
+                int supplyID = Convert.ToInt32(SODataGridView.Rows[e.RowIndex].Cells["SupplyID"].Value);
+
+                // Call the DAO method to delete the order item
+                bool deleted = supDAO.DeleteSupplyOrderItem(supplyID);
+
+                if (deleted)
+                {
+                    Console.WriteLine($"Successfully deleted supply order item with SupplyID: {supplyID}");
+                }
+                else
+                {
+                    Console.WriteLine($"Failed to delete supply order item with SupplyID: {supplyID}");
+                }
+
+                // Remove the row from the DataGridView
+                SODataGridView.Rows.RemoveAt(e.RowIndex);
+            }
+
             supplyOrderedBindingSource.DataSource = soDAO.GetSupplyOrders();
             suppliesBindingSource.DataSource = supDAO.GetStock();
-
-
             prodcutStocksDataGrid.Refresh();
             SODataGridView.Refresh();
 

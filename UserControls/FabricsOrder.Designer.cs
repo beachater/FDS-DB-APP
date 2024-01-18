@@ -50,16 +50,17 @@
             this.fabricOrderTrans.Controls.Add(this.panel2);
             this.fabricOrderTrans.Location = new System.Drawing.Point(157, 0);
             this.fabricOrderTrans.Name = "fabricOrderTrans";
-            this.fabricOrderTrans.Size = new System.Drawing.Size(659, 483);
+            this.fabricOrderTrans.Size = new System.Drawing.Size(659, 518);
             this.fabricOrderTrans.TabIndex = 1;
             this.fabricOrderTrans.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(659, 483);
+            this.panel2.Size = new System.Drawing.Size(659, 518);
             this.panel2.TabIndex = 5;
             // 
             // fabricTypecmb
@@ -82,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(181)))), ((int)(((byte)(149)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.Controls.Add(this.fabricTypecmb);
             this.Controls.Add(this.fabricOrderTrans);
             this.Controls.Add(this.label1);

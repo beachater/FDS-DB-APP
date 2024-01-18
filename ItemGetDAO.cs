@@ -11,7 +11,7 @@ namespace FDS_application
 {
     public class ItemGetDAO
     {
-        private string connectionString = "datasource=localhost;port=3307;username=root;password=root;database=db_infinytarwerks";
+        private string connectionString = "datasource=localhost;port=3307;username=staff;password=staff123;database=db_infinytarwerks";
         private int orderId;
         public event EventHandler DataChanged;
         public void SetOrderId(int orderId)

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FDS_application
-{
+{                               // text = username.txt
     internal class Order_SuppliesDAO
     {
         private string connectionString = "datasource=localhost;port=3307;username=root;password=root;database=db_infinytarwerks";
@@ -187,6 +187,52 @@ namespace FDS_application
                 Console.WriteLine("Error updating In_stock status: " + ex.Message);
                 throw;  // Rethrow the exception to propagate it back to the caller
             }
+        }
+        public bool DeleteSupplyOrderItem(int sorderid)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (MySqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            string query = "DELETE FROM tb_supply_order WHERE SOrder_ID = @sorderid";
+
+                            using (MySqlCommand command = new MySqlCommand(query, connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@sorderid", sorderid);
+                                int affectedRows = command.ExecuteNonQuery();
+
+                                if (affectedRows > 0)
+                                {
+                                    Console.WriteLine($"Deleted supply order item with SOrder_ID: {sorderid}");
+                                    transaction.Commit(); // Commit the transaction
+                                    return true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"No rows affected. Could not find supply order item with SOrder_ID: {sorderid}");
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error executing DELETE query: {ex.Message}");
+                            transaction.Rollback(); // Rollback the transaction in case of an exception
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting supply order item: {ex.Message}");
+            }
+
+            return false;
         }
     }
 

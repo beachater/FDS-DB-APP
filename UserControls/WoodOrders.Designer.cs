@@ -31,6 +31,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.priceDisplay3 = new System.Windows.Forms.Label();
             this.NoteTxt = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.DesignTxt = new System.Windows.Forms.TextBox();
@@ -40,7 +41,6 @@
             this.SizeTxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.QuantityTxt = new System.Windows.Forms.TextBox();
-            this.priceDisplay3 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +72,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.panel3.Controls.Add(this.priceDisplay3);
             this.panel3.Controls.Add(this.panel2);
             this.panel3.Controls.Add(this.NoteTxt);
@@ -88,6 +89,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(548, 518);
             this.panel3.TabIndex = 15;
+            // 
+            // priceDisplay3
+            // 
+            this.priceDisplay3.AutoSize = true;
+            this.priceDisplay3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceDisplay3.Location = new System.Drawing.Point(95, 337);
+            this.priceDisplay3.Name = "priceDisplay3";
+            this.priceDisplay3.Size = new System.Drawing.Size(15, 16);
+            this.priceDisplay3.TabIndex = 24;
+            this.priceDisplay3.Text = "..";
             // 
             // NoteTxt
             // 
@@ -169,16 +180,6 @@
             this.QuantityTxt.Size = new System.Drawing.Size(100, 20);
             this.QuantityTxt.TabIndex = 4;
             this.QuantityTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
-            // priceDisplay3
-            // 
-            this.priceDisplay3.AutoSize = true;
-            this.priceDisplay3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceDisplay3.Location = new System.Drawing.Point(95, 337);
-            this.priceDisplay3.Name = "priceDisplay3";
-            this.priceDisplay3.Size = new System.Drawing.Size(15, 16);
-            this.priceDisplay3.TabIndex = 24;
-            this.priceDisplay3.Text = "..";
             // 
             // WoodOrders
             // 

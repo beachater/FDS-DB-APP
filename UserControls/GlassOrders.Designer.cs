@@ -36,6 +36,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.panel3.Controls.Add(this.glassPanel);
             this.panel3.Controls.Add(this.glassTypecmb);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -48,6 +49,7 @@
             // 
             // glassPanel
             // 
+            this.glassPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.glassPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.glassPanel.Location = new System.Drawing.Point(157, 0);
             this.glassPanel.Name = "glassPanel";

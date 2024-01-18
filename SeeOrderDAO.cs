@@ -12,16 +12,15 @@ namespace FDS_application
   
     public class SeeOrderDAO
     {
+        private string username;
+        private string password;
         private string connectionString = "datasource=localhost;port=3307;username=root;password=root;database=db_infinytarwerks";
-       /* public enum OrderStatus
-    {
-        pending,
-        processing,
-        finished
 
-            // Add other status values as needed  Recipient = $"{reader["first_name"]} {reader["last_name"]}",
+        public void setUser(string username, string password)
+        {
+            this.username = username;
+            this.password = password;
         }
-       */
 
         public class SeeOrder
         {
@@ -72,7 +71,7 @@ namespace FDS_application
                     {
                         connection.Open();
 
-                        string query = "SELECT o.order_id, o.order_date, o.total_price,o.status, c.first_name, c.last_name, c.phone_no FROM tb_order_transaction o JOIN tb_customers c ON o.customer_id = c.customer_id";
+                        string query = "SELECT o.order_id, o.order_date, o.total_price,o.status, c.first_name, c.last_name, c.phone_no \r\nFROM tb_order_transaction o \r\nJOIN tb_customers c ON o.customer_id = c.customer_id \r\nWHERE o.status != 'finished';";
 
                         using (MySqlCommand command = new MySqlCommand(query, connection))
                         {
