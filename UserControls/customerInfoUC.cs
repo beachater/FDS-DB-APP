@@ -78,6 +78,7 @@ namespace FDS_application.UserControls
                 MessageBox.Show("Please fill in both first name and last name.");
                 return;
             }
+
             bool success = CustomerDAO.Instance.InsertCustomer(firstName, lastName, phoneNum);
 
             if (success)
@@ -86,42 +87,75 @@ namespace FDS_application.UserControls
 
                 // Retrieve the customer ID
                 string customerId = CustomerDAO.Instance.GetCustomerId(firstName, lastName);
+
+                // Insert organization
                 if (!string.IsNullOrWhiteSpace(organizationTxt.Text))
                 {
-                    bool orgInsertSuccess = CustomerDAO.Instance.InsertOrganization(customerId, organizationTxt.Text);
-                    if (orgInsertSuccess)
+                    int orgId = CustomerDAO.Instance.InsertOrganization(customerId, organizationTxt.Text);
+                    if (orgId > 0)
                     {
                         MessageBox.Show("Organization inserted successfully!");
+
+                        DateTime orderDate = DateTime.Now;
+                        int orderId = CustomerDAO.Instance.InsertOrderTransaction(customerId, orgId, orderDate, false);
+
+                        if (orderId > 0)
+                        {
+                            string fName = this.FirstName;
+                            string lName = this.LastName;
+
+                            // Pass orderId to OrderUC
+                            OrderUC uc = new OrderUC();
+                            uc.SetRecipientName(fName, lName);
+
+                            // Set orderId in OrderUC
+                            uc.SetOrderId(orderId);
+
+                            addUserControl(uc);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to insert order transaction.");
+                        }
                     }
                     else
                     {
                         MessageBox.Show("Failed to insert organization.");
                     }
                 }
-
-                DateTime orderDate = DateTime.Now;
-                int orderId = CustomerDAO.Instance.InsertOrderTransaction(customerId, orderDate, false);
-                if (orderId > 0)
+                else
                 {
-                    string fName = this.FirstName;
-                    string lName = this.LastName;
+                    // If organization is not specified, proceed without it
+                    DateTime orderDate = DateTime.Now;
+                    int orderId = CustomerDAO.Instance.InsertOrderTransaction(customerId, 0, orderDate, false);
 
-                    // Pass orderId to OrderUC
-                    OrderUC uc = new OrderUC();
-                    uc.SetRecipientName(fName, lName);
+                    if (orderId > 0)
+                    {
+                        string fName = this.FirstName;
+                        string lName = this.LastName;
 
-                    // Set orderId in OrderUC
-                    uc.SetOrderId(orderId);
+                        // Pass orderId to OrderUC
+                        OrderUC uc = new OrderUC();
+                        uc.SetRecipientName(fName, lName);
 
-                    addUserControl(uc);
+                        // Set orderId in OrderUC
+                        uc.SetOrderId(orderId);
+
+                        addUserControl(uc);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to insert order transaction.");
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Failed to insert customer.");
             }
-        }          
-       
+        }
+
+
 
         private void dashboardPanel_Paint(object sender, PaintEventArgs e)
         {

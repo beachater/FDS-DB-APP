@@ -125,7 +125,7 @@ public class CustomerDAO
             return false;
         }
     }
-    public bool InsertOrganization(string customerId, string orgName)
+    public int InsertOrganization(string customerId, string orgName)
     {
         try
         {
@@ -134,37 +134,38 @@ public class CustomerDAO
                 connection.Open();
 
                 // Check if the organization already exists for the customer
-                string checkOrganizationQuery = "SELECT COUNT(*) FROM tb_cust_organization WHERE customer_id = @CustomerId";
+                string checkOrganizationQuery = "SELECT org_id FROM tb_cust_organization WHERE customer_id = @CustomerId";
                 using (MySqlCommand checkOrganizationCommand = new MySqlCommand(checkOrganizationQuery, connection))
                 {
                     checkOrganizationCommand.Parameters.AddWithValue("@CustomerId", customerId);
 
-                    int organizationCount = Convert.ToInt32(checkOrganizationCommand.ExecuteScalar());
+                    object orgIdObject = checkOrganizationCommand.ExecuteScalar();
 
-                    if (organizationCount > 0)
+                    if (orgIdObject != null)
                     {
                         // Organization already exists for the customer
-                        return true;
+                        return Convert.ToInt32(orgIdObject);
                     }
                 }
 
                 // Organization does not exist, proceed with insertion
-                string insertOrganizationQuery = "INSERT INTO tb_cust_organization (customer_id, org_name) VALUES (@CustomerId, @OrgName)";
+                string insertOrganizationQuery = "INSERT INTO tb_cust_organization (customer_id, org_name) VALUES (@CustomerId, @OrgName); SELECT LAST_INSERT_ID();";
                 MySqlCommand insertOrganizationCommand = new MySqlCommand(insertOrganizationQuery, connection);
 
                 insertOrganizationCommand.Parameters.AddWithValue("@CustomerId", customerId);
                 insertOrganizationCommand.Parameters.AddWithValue("@OrgName", orgName);
 
-                int rowsAffectedOrganization = insertOrganizationCommand.ExecuteNonQuery();
+                // Execute the query and retrieve the generated organization ID
+                int orgId = Convert.ToInt32(insertOrganizationCommand.ExecuteScalar());
 
-                return rowsAffectedOrganization > 0;
+                return orgId;
             }
         }
         catch (Exception ex)
         {
             // Handle exceptions appropriately (log, throw, etc.)
             Console.WriteLine($"Error inserting organization: {ex.Message}");
-            return false;
+            return -1; // Indicate failure
         }
     }
     public string GetCustomerId(string firstName, string lastName)
@@ -181,7 +182,7 @@ public class CustomerDAO
             return getCustomerIdCommand.ExecuteScalar().ToString();
         }
     }
-    public int InsertOrderTransaction(string customerId, DateTime orderDate, bool isCustomerDesign)
+    public int InsertOrderTransaction(string customerId, int orgId, DateTime orderDate, bool isCustomerDesign)
     {
         try
         {
@@ -194,11 +195,12 @@ public class CustomerDAO
                     try
                     {
                         // Insert order transaction
-                        string insertOrderTransactionQuery = "INSERT INTO tb_order_transaction (customer_id, order_date, is_customer_design) " +
-                                                              "VALUES (@CustomerId, @OrderDate, @IsCustomerDesign); SELECT LAST_INSERT_ID();";
+                        string insertOrderTransactionQuery = "INSERT INTO tb_order_transaction (customer_id, org_id, order_date, is_customer_design) " +
+                                                              "VALUES (@CustomerId, @OrgId, @OrderDate, @IsCustomerDesign); SELECT LAST_INSERT_ID();";
                         MySqlCommand insertOrderTransactionCommand = new MySqlCommand(insertOrderTransactionQuery, connection, transaction);
 
                         insertOrderTransactionCommand.Parameters.AddWithValue("@CustomerId", customerId);
+                        insertOrderTransactionCommand.Parameters.AddWithValue("@OrgId", orgId);
                         insertOrderTransactionCommand.Parameters.AddWithValue("@OrderDate", orderDate);
                         insertOrderTransactionCommand.Parameters.AddWithValue("@IsCustomerDesign", isCustomerDesign);
 
