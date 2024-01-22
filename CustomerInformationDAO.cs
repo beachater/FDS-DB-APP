@@ -133,7 +133,22 @@ public class CustomerDAO
             {
                 connection.Open();
 
-                // Insert organization information
+                // Check if the organization already exists for the customer
+                string checkOrganizationQuery = "SELECT COUNT(*) FROM tb_cust_organization WHERE customer_id = @CustomerId";
+                using (MySqlCommand checkOrganizationCommand = new MySqlCommand(checkOrganizationQuery, connection))
+                {
+                    checkOrganizationCommand.Parameters.AddWithValue("@CustomerId", customerId);
+
+                    int organizationCount = Convert.ToInt32(checkOrganizationCommand.ExecuteScalar());
+
+                    if (organizationCount > 0)
+                    {
+                        // Organization already exists for the customer
+                        return true;
+                    }
+                }
+
+                // Organization does not exist, proceed with insertion
                 string insertOrganizationQuery = "INSERT INTO tb_cust_organization (customer_id, org_name) VALUES (@CustomerId, @OrgName)";
                 MySqlCommand insertOrganizationCommand = new MySqlCommand(insertOrganizationQuery, connection);
 
