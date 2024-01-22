@@ -16,7 +16,7 @@ namespace FDS_application.UserControls
         private string productSKU = "Infi3";
         private string size;
         private ItemGetDAO itemDAO;
-        private CustomerDAO orderDAO = new CustomerDAO();
+        //private CustomerDAO orderDAO = new CustomerDAO();
         public void SetOrderId(int orderId)
         {
             this.orderId = orderId;
@@ -92,12 +92,12 @@ namespace FDS_application.UserControls
                     return;
                 }
 
-                int orderItemId = orderDAO.InsertOrderItem(orderId, productSKU, quantity, size);
+                int orderItemId = CustomerDAO.Instance.InsertOrderItem(orderId, productSKU, quantity, size);
 
                 if (orderItemId > 0)
                 {
                     // Insert order item specifications
-                    bool orderItemSpecInserted = orderDAO.insertOrderItemSpecifications(orderItemId, size, design, material, note);
+                    bool orderItemSpecInserted = CustomerDAO.Instance.insertOrderItemSpecifications(orderItemId, size, design, material, note);
 
                     if (orderItemSpecInserted)
                     {
@@ -163,7 +163,7 @@ namespace FDS_application.UserControls
             if (int.TryParse(quantityTxt.Text, out int quantity) && !string.IsNullOrEmpty(size))
             {
                 // Update the text of the label based on the entered quantity and size
-                priceDisplay2.Text = $"{orderDAO.GetUnitPriceBySkuAndSize(productSKU, size) * quantity} PHP";
+                priceDisplay2.Text = $"{CustomerDAO.Instance.GetUnitPriceBySkuAndSize(productSKU, size) * quantity} PHP";
             }
             else
             {

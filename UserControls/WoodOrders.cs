@@ -17,7 +17,7 @@ namespace FDS_application.UserControls
         private string size;
         private ItemGetDAO itemDAO;
 
-        private CustomerDAO orderDAO = new CustomerDAO();
+        //private CustomerDAO orderDAO = new CustomerDAO();
         public WoodOrders(ItemGetDAO itemDAO) : this()  // Overloaded constructor
         {
             this.itemDAO = itemDAO;  // Set the instance
@@ -89,12 +89,12 @@ namespace FDS_application.UserControls
                     return;
                 }
 
-                int orderItemId = orderDAO.InsertOrderItem(orderId, productSKU, quantity, size);
+                int orderItemId = CustomerDAO.Instance.InsertOrderItem(orderId, productSKU, quantity, size);
 
                 if (orderItemId > 0)
                 {
                     // Insert order item specifications
-                    bool orderItemSpecInserted = orderDAO.insertOrderItemSpecifications(orderItemId, size, design, material, note);
+                    bool orderItemSpecInserted = CustomerDAO.Instance.insertOrderItemSpecifications(orderItemId, size, design, material, note);
 
                     if (orderItemSpecInserted)
                     {
@@ -159,7 +159,7 @@ namespace FDS_application.UserControls
             if (int.TryParse(QuantityTxt.Text, out int quantity) && !string.IsNullOrEmpty(size))
             {
                 // Update the text of the label based on the entered quantity and size
-                priceDisplay3.Text = $"{orderDAO.GetUnitPriceBySkuAndSize(productSKU, size) * quantity} PHP";
+                priceDisplay3.Text = $"{CustomerDAO.Instance.GetUnitPriceBySkuAndSize(productSKU, size) * quantity} PHP";
             }
             else
             {

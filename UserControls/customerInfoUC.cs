@@ -15,7 +15,7 @@ namespace FDS_application.UserControls
 {
     public partial class customerInfoUC : UserControl
     {
-        private CustomerDAO cusDAO = new CustomerDAO();
+        //private CustomerDAO cusDAO = new CustomerDAO();
         private int orderId;
         public customerInfoUC()
         {
@@ -78,17 +78,17 @@ namespace FDS_application.UserControls
                 MessageBox.Show("Please fill in both first name and last name.");
                 return;
             }
-            bool success = cusDAO.InsertCustomer(firstName, lastName, phoneNum);
+            bool success = CustomerDAO.Instance.InsertCustomer(firstName, lastName, phoneNum);
 
             if (success)
             {
                 MessageBox.Show("Customer inserted successfully!");
 
                 // Retrieve the customer ID
-                string customerId = cusDAO.GetCustomerId(firstName, lastName);
+                string customerId = CustomerDAO.Instance.GetCustomerId(firstName, lastName);
                 if (!string.IsNullOrWhiteSpace(organizationTxt.Text))
                 {
-                    bool orgInsertSuccess = cusDAO.InsertOrganization(customerId, organizationTxt.Text);
+                    bool orgInsertSuccess = CustomerDAO.Instance.InsertOrganization(customerId, organizationTxt.Text);
                     if (orgInsertSuccess)
                     {
                         MessageBox.Show("Organization inserted successfully!");
@@ -100,7 +100,7 @@ namespace FDS_application.UserControls
                 }
 
                 DateTime orderDate = DateTime.Now;
-                int orderId = cusDAO.InsertOrderTransaction(customerId, orderDate);
+                int orderId = CustomerDAO.Instance.InsertOrderTransaction(customerId, orderDate, false);
                 if (orderId > 0)
                 {
                     string fName = this.FirstName;

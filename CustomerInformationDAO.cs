@@ -1,11 +1,36 @@
 ﻿using System;
 using System.Data;
+using FDS_application;
 using FDS_application.UserControls;
 using MySql.Data.MySqlClient;
 
 public class CustomerDAO
 {
-    private string connectionString = "datasource=localhost;port=3307;username=root;password=root;database=db_infinytarwerks";
+    private static CustomerDAO instance;
+    private string username;
+    private string password;
+    private string connectionString;
+    //private bool isCustomerDesign = false;
+
+
+    public void setUser(string username, string password)
+    {
+        this.username = username;
+        this.password = password;
+        // Assuming MySQL connection for the given example
+        this.connectionString = $"datasource=localhost;port=3307;username={this.username};password={this.password};database=db_infinytarwerks";
+    }
+    public static CustomerDAO Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new CustomerDAO();
+            }
+            return instance;
+        }
+    }
 
     public bool InsertCustomer(string firstName, string lastName, string phoneNo)
     {
@@ -15,31 +40,82 @@ public class CustomerDAO
             {
                 connection.Open();
 
-                // Check if the customer with the same name already exists
-                string checkCustomerQuery = "SELECT customer_id FROM tb_customers WHERE first_name = @FirstName AND last_name = @LastName";
-                MySqlCommand checkCustomerCommand = new MySqlCommand(checkCustomerQuery, connection);
-                checkCustomerCommand.Parameters.AddWithValue("@FirstName", firstName);
-                checkCustomerCommand.Parameters.AddWithValue("@LastName", lastName);
+                // Check if the customer with the same name and phone number already exists
+                string checkCustomerQuery = "SELECT c.customer_id, p.phone_no FROM tb_customers c " +
+                                            "LEFT JOIN tb_cust_phone_num p ON c.customer_id = p.customer_id " +
+                                            "WHERE c.first_name = @FirstName AND c.last_name = @LastName";
 
-                object existingCustomerId = checkCustomerCommand.ExecuteScalar();
-
-                if (existingCustomerId != null)
+                using (MySqlCommand checkCustomerCommand = new MySqlCommand(checkCustomerQuery, connection))
                 {
-                    // Customer already exists, return true (insert successful) and use the existing customer ID
-                    return true;
+                    checkCustomerCommand.Parameters.AddWithValue("@FirstName", firstName);
+                    checkCustomerCommand.Parameters.AddWithValue("@LastName", lastName);
+
+                    using (MySqlDataReader reader = checkCustomerCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Customer with the same name exists
+                            int existingCustomerId = reader.GetInt32("customer_id");
+                            string existingPhoneNo = reader.IsDBNull(reader.GetOrdinal("phone_no")) ? null : reader.GetString("phone_no");
+
+                            if (existingPhoneNo == phoneNo)
+                            {
+                                // Phone number is the same, return true (insert successful) and use the existing customer ID
+                                return true;
+                            }
+                            else
+                            {
+                                // Close the reader before executing another query
+                                reader.Close();
+
+                                // Phone number is different, add to tb_cust_phone_num
+                                using (MySqlConnection phoneConnection = new MySqlConnection(connectionString))
+                                {
+                                    phoneConnection.Open();
+
+                                    string insertNumQuery = "INSERT INTO tb_cust_phone_num (customer_id, phone_no) VALUES (@CustomerId, @PhoneNo)";
+                                    using (MySqlCommand insertNumCommand = new MySqlCommand(insertNumQuery, phoneConnection))
+                                    {
+                                        insertNumCommand.Parameters.AddWithValue("@CustomerId", existingCustomerId);
+                                        insertNumCommand.Parameters.AddWithValue("@PhoneNo", phoneNo);
+
+                                        int numrowsAffected = insertNumCommand.ExecuteNonQuery();
+
+                                        return numrowsAffected > 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 // Customer does not exist, proceed with insertion
-                string insertCustomerQuery = "INSERT INTO tb_customers (first_name, last_name, phone_no) VALUES (@FirstName, @LastName, @PhoneNo)";
-                MySqlCommand insertCustomerCommand = new MySqlCommand(insertCustomerQuery, connection);
+                string insertCustomerQuery = "INSERT INTO tb_customers (first_name, last_name) VALUES (@FirstName, @LastName); SELECT LAST_INSERT_ID();";
+                using (MySqlCommand insertCustomerCommand = new MySqlCommand(insertCustomerQuery, connection))
+                {
+                    insertCustomerCommand.Parameters.AddWithValue("@FirstName", char.ToUpper(firstName[0]) + firstName.Substring(1));
+                    insertCustomerCommand.Parameters.AddWithValue("@LastName", char.ToUpper(lastName[0]) + lastName.Substring(1));
 
-                insertCustomerCommand.Parameters.AddWithValue("@FirstName", char.ToUpper(firstName[0]) + firstName.Substring(1));
-                insertCustomerCommand.Parameters.AddWithValue("@LastName", char.ToUpper(lastName[0]) + lastName.Substring(1));
-                insertCustomerCommand.Parameters.AddWithValue("@PhoneNo", phoneNo);
+                    // Execute the query and retrieve the generated customer ID
+                    int customerId = Convert.ToInt32(insertCustomerCommand.ExecuteScalar());
 
-                int rowsAffected = insertCustomerCommand.ExecuteNonQuery();
+                    // Now, insert the phone number into tb_cust_phone_num
+                    using (MySqlConnection phoneConnection = new MySqlConnection(connectionString))
+                    {
+                        phoneConnection.Open();
 
-                return rowsAffected > 0;
+                        string insertPhoneQuery = "INSERT INTO tb_cust_phone_num (customer_id, phone_no) VALUES (@CustomerId, @PhoneNo)";
+                        using (MySqlCommand insertPhoneCommand = new MySqlCommand(insertPhoneQuery, phoneConnection))
+                        {
+                            insertPhoneCommand.Parameters.AddWithValue("@CustomerId", customerId);
+                            insertPhoneCommand.Parameters.AddWithValue("@PhoneNo", phoneNo);
+
+                            int rowsAffected = insertPhoneCommand.ExecuteNonQuery();
+
+                            return rowsAffected > 0;
+                        }
+                    }
+                }
             }
         }
         catch (Exception ex)
@@ -90,7 +166,7 @@ public class CustomerDAO
             return getCustomerIdCommand.ExecuteScalar().ToString();
         }
     }
-    public int InsertOrderTransaction(string customerId, DateTime orderDate)
+    public int InsertOrderTransaction(string customerId, DateTime orderDate, bool isCustomerDesign)
     {
         try
         {
@@ -98,17 +174,18 @@ public class CustomerDAO
             {
                 connection.Open();
 
-                // Begin a database transaction
                 using (MySqlTransaction transaction = connection.BeginTransaction())
                 {
                     try
                     {
                         // Insert order transaction
-                        string insertOrderTransactionQuery = "INSERT INTO tb_order_transaction (customer_id, order_date) VALUES (@CustomerId, @OrderDate); SELECT LAST_INSERT_ID();";
+                        string insertOrderTransactionQuery = "INSERT INTO tb_order_transaction (customer_id, order_date, is_customer_design) " +
+                                                              "VALUES (@CustomerId, @OrderDate, @IsCustomerDesign); SELECT LAST_INSERT_ID();";
                         MySqlCommand insertOrderTransactionCommand = new MySqlCommand(insertOrderTransactionQuery, connection, transaction);
 
                         insertOrderTransactionCommand.Parameters.AddWithValue("@CustomerId", customerId);
                         insertOrderTransactionCommand.Parameters.AddWithValue("@OrderDate", orderDate);
+                        insertOrderTransactionCommand.Parameters.AddWithValue("@IsCustomerDesign", isCustomerDesign);
 
                         // Execute the query and retrieve the generated order ID
                         int orderId = Convert.ToInt32(insertOrderTransactionCommand.ExecuteScalar());
@@ -290,7 +367,7 @@ public class CustomerDAO
             return false;
         }
     }
-    public bool UpdateOrderTransactionAndAddPayment(int orderId, decimal totalPrice, string paymentMethod)
+    public bool UpdateOrderTransactionAndAddPayment(int orderId, decimal totalPrice, string paymentMethod, bool isCustomerDesign)
     {
         try
         {
@@ -298,18 +375,24 @@ public class CustomerDAO
             {
                 connection.Open();
 
-                // Begin a database transaction
                 using (MySqlTransaction transaction = connection.BeginTransaction())
                 {
                     try
                     {
+                        // Add an additional charge of 150 if it's not a customer design
+                        if (!isCustomerDesign)
+                        {
+                            totalPrice += 150m;
+                        }
+
                         // Update the order transaction with the payment details
-                        string updateOrderTransactionQuery = "UPDATE tb_order_transaction SET total_price = @TotalPrice, payment_method = @PaymentMethod WHERE order_id = @OrderId";
+                        string updateOrderTransactionQuery = "UPDATE tb_order_transaction SET total_price = @TotalPrice, payment_method = @PaymentMethod, is_customer_design = @IsCustomerDesign WHERE order_id = @OrderId";
                         MySqlCommand updateOrderTransactionCommand = new MySqlCommand(updateOrderTransactionQuery, connection, transaction);
 
                         updateOrderTransactionCommand.Parameters.AddWithValue("@TotalPrice", totalPrice);
                         updateOrderTransactionCommand.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
                         updateOrderTransactionCommand.Parameters.AddWithValue("@OrderId", orderId);
+                        updateOrderTransactionCommand.Parameters.AddWithValue("@IsCustomerDesign", isCustomerDesign);
 
                         int rowsAffectedTransaction = updateOrderTransactionCommand.ExecuteNonQuery();
 
@@ -334,4 +417,6 @@ public class CustomerDAO
             return false;
         }
     }
+
 }
+

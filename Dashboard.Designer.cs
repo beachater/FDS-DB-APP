@@ -28,38 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashOrder));
             this.dashboard_top = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.dashboardSide = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dashboardPanel = new System.Windows.Forms.Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.gSuppliesButton = new Guna.UI2.WinForms.Guna2Button();
             this.gOrderButton = new Guna.UI2.WinForms.Guna2Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dashboardPanel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.dashboard_top.SuspendLayout();
             this.dashboardSide.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dashboard_top
             // 
             this.dashboard_top.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(65)))));
             this.dashboard_top.Controls.Add(this.panel2);
+            this.dashboard_top.Controls.Add(this.panel1);
             this.dashboard_top.Dock = System.Windows.Forms.DockStyle.Top;
             this.dashboard_top.Location = new System.Drawing.Point(0, 0);
             this.dashboard_top.Name = "dashboard_top";
             this.dashboard_top.Size = new System.Drawing.Size(1024, 70);
             this.dashboard_top.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel2.Location = new System.Drawing.Point(12, 12);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(48, 35);
-            this.panel2.TabIndex = 1;
             // 
             // dashboardSide
             // 
@@ -74,6 +68,24 @@
             this.dashboardSide.Name = "dashboardSide";
             this.dashboardSide.Size = new System.Drawing.Size(208, 570);
             this.dashboardSide.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(331, 127);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(0, 0);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // dashboardPanel
+            // 
+            this.dashboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dashboardPanel.Location = new System.Drawing.Point(208, 70);
+            this.dashboardPanel.Name = "dashboardPanel";
+            this.dashboardPanel.Size = new System.Drawing.Size(816, 570);
+            this.dashboardPanel.TabIndex = 4;
+            this.dashboardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_3);
             // 
             // guna2Button1
             // 
@@ -168,23 +180,40 @@
             this.gOrderButton.Text = "New Order";
             this.gOrderButton.Click += new System.EventHandler(this.gOrderButton_Click);
             // 
-            // button1
+            // panel2
             // 
-            this.button1.Location = new System.Drawing.Point(331, 127);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(0, 0);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.panel2.BackgroundImage = global::FDS_application.Properties.Resources.infinytArtwerks_logo_removebg_preview;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel2.Location = new System.Drawing.Point(27, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(158, 58);
+            this.panel2.TabIndex = 1;
             // 
-            // dashboardPanel
+            // guna2Button3
             // 
-            this.dashboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dashboardPanel.Location = new System.Drawing.Point(208, 70);
-            this.dashboardPanel.Name = "dashboardPanel";
-            this.dashboardPanel.Size = new System.Drawing.Size(816, 570);
-            this.dashboardPanel.TabIndex = 4;
-            this.dashboardPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_3);
+            this.guna2Button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button3.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button3.ForeColor = System.Drawing.Color.White;
+            this.guna2Button3.Location = new System.Drawing.Point(7, 12);
+            this.guna2Button3.Name = "guna2Button3";
+            this.guna2Button3.Size = new System.Drawing.Size(99, 45);
+            this.guna2Button3.TabIndex = 2;
+            this.guna2Button3.Text = "Log Out";
+            this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.guna2Button3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(906, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(118, 70);
+            this.panel1.TabIndex = 3;
             // 
             // dashOrder
             // 
@@ -203,6 +232,7 @@
             this.Load += new System.EventHandler(this.btnOrder_Load_1);
             this.dashboard_top.ResumeLayout(false);
             this.dashboardSide.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -218,5 +248,7 @@
         private Guna.UI2.WinForms.Guna2Button gSuppliesButton;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

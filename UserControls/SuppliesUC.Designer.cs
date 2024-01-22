@@ -36,11 +36,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -57,11 +57,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.SODataGridView = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.in_stock = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.supDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.productsDataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             this.label5 = new System.Windows.Forms.Label();
-            this.in_stock = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.supDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.prodcutStocksDataGrid)).BeginInit();
             this.panel2.SuspendLayout();
@@ -83,6 +83,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(177)))), ((int)(((byte)(138)))));
             this.panel1.Controls.Add(this.guna2Button1);
             this.panel1.Controls.Add(this.quanTxt);
             this.panel1.Controls.Add(this.productCmb);
@@ -379,6 +380,29 @@
             this.SODataGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.SODataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SODataGridView_CellContentClick);
             // 
+            // in_stock
+            // 
+            this.in_stock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.in_stock.HeaderText = "Comp";
+            this.in_stock.Name = "in_stock";
+            this.in_stock.ReadOnly = true;
+            this.in_stock.Width = 47;
+            // 
+            // supDelete
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.PaleGoldenrod;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            this.supDelete.DefaultCellStyle = dataGridViewCellStyle7;
+            this.supDelete.HeaderText = "";
+            this.supDelete.Name = "supDelete";
+            this.supDelete.ReadOnly = true;
+            this.supDelete.Text = "Delete";
+            this.supDelete.UseColumnTextForButtonValue = true;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -466,29 +490,6 @@
             this.label5.TabIndex = 12;
             this.label5.Tag = "";
             this.label5.Text = "Product Stocks";
-            // 
-            // in_stock
-            // 
-            this.in_stock.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.in_stock.HeaderText = "Comp";
-            this.in_stock.Name = "in_stock";
-            this.in_stock.ReadOnly = true;
-            this.in_stock.Width = 47;
-            // 
-            // supDelete
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.PaleGoldenrod;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            this.supDelete.DefaultCellStyle = dataGridViewCellStyle7;
-            this.supDelete.HeaderText = "";
-            this.supDelete.Name = "supDelete";
-            this.supDelete.ReadOnly = true;
-            this.supDelete.Text = "Delete";
-            this.supDelete.UseColumnTextForButtonValue = true;
             // 
             // SuppliesUC
             // 

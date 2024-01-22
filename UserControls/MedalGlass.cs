@@ -16,7 +16,7 @@ namespace FDS_application.UserControls
         private string productSKU = "Infi5";
         private string size;
         private ItemGetDAO itemDAO;
-        private CustomerDAO orderDAO = new CustomerDAO();
+        //private CustomerDAO orderDAO = new CustomerDAO();
 
         public MedalGlass(ItemGetDAO itemDAO) : this()  // Overloaded constructor
         {
@@ -53,12 +53,12 @@ namespace FDS_application.UserControls
             if (int.TryParse(QuantityTxt.Text, out quantity))
             {
                 // Now 'quantity' holds the parsed integer value
-                int orderItemId = orderDAO.InsertOrderItem(orderId, productSKU, quantity, size);
+                int orderItemId = CustomerDAO.Instance.InsertOrderItem(orderId, productSKU, quantity, size);
 
                 if (orderItemId > 0)
                 {
                     // Insert order item specifications
-                    bool orderItemSpecInserted = orderDAO.insertOrderItemSpecifications(orderItemId, size, design, material, note);
+                    bool orderItemSpecInserted = CustomerDAO.Instance.insertOrderItemSpecifications(orderItemId, size, design, material, note);
 
                     if (orderItemSpecInserted)
                     {
@@ -89,7 +89,7 @@ namespace FDS_application.UserControls
             if (int.TryParse(QuantityTxt.Text, out int quantity))
             {
                 // Update the text of the label based on the entered quantity
-                priceDisplay4.Text = $"{orderDAO.GetUnitPriceBySkuAndSize(productSKU, size) * quantity} PHP";
+                priceDisplay4.Text = $"{CustomerDAO.Instance.GetUnitPriceBySkuAndSize(productSKU, size) * quantity} PHP";
             }
             else
             {

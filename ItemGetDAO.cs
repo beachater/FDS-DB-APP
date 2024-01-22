@@ -11,7 +11,29 @@ namespace FDS_application
 {
     public class ItemGetDAO
     {
-        private string connectionString = "datasource=localhost;port=3307;username=staff;password=staff123;database=db_infinytarwerks";
+        private static ItemGetDAO instance;
+        private string username;
+        private string password;
+        private string connectionString;
+
+        public void setUser(string username, string password)
+        {
+            this.username = username;
+            this.password = password;
+            // Assuming MySQL connection for the given example
+            this.connectionString = $"datasource=localhost;port=3307;username={this.username};password={this.password};database=db_infinytarwerks";
+        }
+        public static ItemGetDAO Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ItemGetDAO();
+                }
+                return instance;
+            }
+        }
         private int orderId;
         public event EventHandler DataChanged;
         public void SetOrderId(int orderId)

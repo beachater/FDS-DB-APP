@@ -10,7 +10,29 @@ namespace FDS_application
 {
     internal class OrderHistoryDAO
     {
-        private string connectionString = "datasource=localhost;port=3307;username=root;password=root;database=db_infinytarwerks";
+        private static OrderHistoryDAO instance;
+        private string username;
+        private string password;
+        private string connectionString;
+
+        public void setUser(string username, string password)
+        {
+            this.username = username;
+            this.password = password;
+            // Assuming MySQL connection for the given example
+            this.connectionString = $"datasource=localhost;port=3307;username={this.username};password={this.password};database=db_infinytarwerks";
+        }
+        public static OrderHistoryDAO Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new OrderHistoryDAO();
+                }
+                return instance;
+            }
+        }
         public class SeeOrderHistory
         {
             public string Recipient { get; set; }
@@ -18,7 +40,8 @@ namespace FDS_application
             public int OrderID { get; set; }
             public DateTime Date { get; set; }
             public decimal TotalPrice { get; set; }
-            
+            public string Org { get; set; }
+
         }
         public class SeeOrderHistoryItem
         {
@@ -42,9 +65,25 @@ namespace FDS_application
                 {
                     connection.Open();
 
-                    string query = "SELECT o.order_id, o.order_date, o.total_price, o.status, c.first_name, c.last_name, c.phone_no " +
-                                   "FROM tb_order_transaction o JOIN tb_customers c ON o.customer_id = c.customer_id " +
-                                   "WHERE o.status = 'finished'";  // Only select orders with status 'finished'
+                    string query = @"
+            SELECT 
+                o.order_id, 
+                o.order_date, 
+                o.total_price, 
+                o.status, 
+                c.first_name, 
+                c.last_name, 
+                GROUP_CONCAT(DISTINCT pn.phone_no) AS phone_no, 
+                GROUP_CONCAT(DISTINCT co.org_name) AS org_names
+            FROM 
+                tb_order_transaction o 
+                JOIN tb_customers c ON o.customer_id = c.customer_id
+                LEFT JOIN tb_cust_phone_num pn ON c.customer_id = pn.customer_id
+                LEFT JOIN tb_cust_organization co ON c.customer_id = co.customer_id
+            WHERE 
+                o.status = 'finished'
+            GROUP BY
+                o.order_id, o.order_date, o.total_price, o.status, c.first_name, c.last_name";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -58,10 +97,11 @@ namespace FDS_application
                                     Date = reader["order_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["order_date"]),
                                     TotalPrice = reader["total_price"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["total_price"]),
                                     Recipient = $"{reader["first_name"]} {reader["last_name"]}",
-                                    PhoneN0 = reader["phone_no"] == DBNull.Value ? string.Empty : reader["phone_no"].ToString()
+                                    PhoneN0 = reader["phone_no"] == DBNull.Value ? string.Empty : reader["phone_no"].ToString(),
+                                    Org = reader["org_names"] == DBNull.Value ? string.Empty : reader["org_names"].ToString()  // Use the org_names column
                                 };
 
-                                System.Diagnostics.Debug.WriteLine($"OrderID: {orderH.OrderID}, Recipient: {orderH.Recipient}, PhoneN0: {orderH.PhoneN0}");
+                                System.Diagnostics.Debug.WriteLine($"OrderID: {orderH.OrderID}, Recipient: {orderH.Recipient}, PhoneN0: {orderH.PhoneN0}, Org: {orderH.Org}");
 
                                 returnThese.Add(orderH);
                             }
@@ -76,6 +116,6 @@ namespace FDS_application
 
             return returnThese;
         }
-        
+
     }
 }

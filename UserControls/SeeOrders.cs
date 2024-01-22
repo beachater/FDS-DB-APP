@@ -15,20 +15,21 @@ namespace FDS_application.UserControls
     {
         BindingSource seeOrderBindingSource = new BindingSource();
         BindingSource seeOrderItemBindingSource = new BindingSource();
-        SeeOrderDAO seeOrder = new SeeOrderDAO();
-        ItemGetDAO dao = new ItemGetDAO();
+        //SeeOrderDAO seeOrder = new SeeOrderDAO();
+        //ItemGetDAO dao = new ItemGetDAO();
         public SeeOrders()
         {
             InitializeComponent();
-            seeOrderBindingSource.DataSource = seeOrder.GetOrders();
-            //seeOrderItemBindingSource = seeOrder.GetOrderItems()
-            //dataGridView1.DataSource = seeOrderBindingSource;
+
+            // Set DataSource to null to clear existing data
+            guna2DataGridView1.DataSource = null;
+
+            seeOrderBindingSource.DataSource = SeeOrderDAO.Instance.GetOrders();
+
+            // Set the DataSource again to apply the changes
             guna2DataGridView1.DataSource = seeOrderBindingSource;
-            guna2DataGridView1.Refresh();
+
             guna2DataGridView1.DataBindingComplete += Guna2DataGridView1_DataBindingComplete;
-
-
-
         }
 
         private void SeeOrders_Load(object sender, EventArgs e)
@@ -36,34 +37,6 @@ namespace FDS_application.UserControls
      
 
         }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            seeOrderBindingSource.DataSource = seeOrder.GetOrders();
-  
-            seeOrderBindingSource.ResetBindings(false);
-          ;
-
-        }
-/*
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == dataGridView1.Columns["Delete"].Index && e.RowIndex >= 0)
-            {
-                // Get the order item ID from the selected row
-                int orderId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["OrderID"].Value);
-
-                // Call the DAO method to delete the order item
-                dao.DeleteOrderTransaction(orderId);
-
-                // Remove the row from the DataGridView
-                dataGridView1.Rows.RemoveAt(e.RowIndex);
-
-                // Optional: Update any totals or refresh the DataGridView
-                // totalItemDataGrid.Refresh();
-            }
-        }
-*/
 
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -73,7 +46,7 @@ namespace FDS_application.UserControls
                 int orderId = Convert.ToInt32(guna2DataGridView1.Rows[e.RowIndex].Cells["OrderID"].Value);
 
                 // Call the DAO method to delete the order item
-                dao.DeleteOrderTransaction(orderId);
+                ItemGetDAO.Instance.DeleteOrderTransaction(orderId);
 
                 // Remove the row from the DataGridView
                 guna2DataGridView1.Rows.RemoveAt(e.RowIndex);
@@ -87,7 +60,7 @@ namespace FDS_application.UserControls
                 
                 int orderId = Convert.ToInt32(guna2DataGridView1.Rows[e.RowIndex].Cells["OrderID"].Value);
 
-                seeOrderItemBindingSource.DataSource = seeOrder.GetOrderItems(orderId);
+                seeOrderItemBindingSource.DataSource = SeeOrderDAO.Instance.GetOrderItems(orderId);
                 guna2DataGridView2.DataSource = seeOrderItemBindingSource;
                 guna2DataGridView2.Refresh();
 
@@ -120,7 +93,7 @@ namespace FDS_application.UserControls
                         int orderId = Convert.ToInt32(guna2DataGridView1.Rows[e.RowIndex].Cells["OrderID"].Value);
 
                         // Update the status in the database
-                        dao.UpdateOrderStatus(orderId, selectedValue);
+                        ItemGetDAO.Instance.UpdateOrderStatus(orderId, selectedValue);
 
                         // Now you have the selected value, you can use it as needed
                         Console.WriteLine($"Selected Value: {selectedValue}");
@@ -139,21 +112,50 @@ namespace FDS_application.UserControls
         }
         private void Guna2DataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            // Remove event handler before attaching to prevent multiple calls
+            guna2DataGridView1.DataBindingComplete -= Guna2DataGridView1_DataBindingComplete;
+
             // Iterate through each row and set the selected value for the ComboBox cell
             foreach (DataGridViewRow row in guna2DataGridView1.Rows)
             {
-                // Get the order ID from the "OrderID" column
                 int orderId = Convert.ToInt32(row.Cells["OrderID"].Value);
+                string status = ItemGetDAO.Instance.GetOrderStatus(orderId);
 
-                // Get the status for the order from the database
-                string status = dao.GetOrderStatus(orderId);
-
-                // Find the ComboBox column by name
                 DataGridViewComboBoxColumn cmbStatusColumn = guna2DataGridView1.Columns["cmbStatus"] as DataGridViewComboBoxColumn;
-
-                // Set the selected value for the ComboBox cell in the current row
                 row.Cells[cmbStatusColumn.Index].Value = status;
             }
+
+            // Re-attach the event handler
+            guna2DataGridView1.DataBindingComplete += Guna2DataGridView1_DataBindingComplete;
+        }
+
+        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button1_Click_1(object sender, EventArgs e)
+        {
+            // Get the search keyword from the TextBox
+            string searchKeyword = searchTxt.Text.ToString().Trim().ToLower();
+
+            // Filter the existing data based on the search keyword
+            List<SeeOrderDAO.SeeOrder> filteredOrders = SeeOrderDAO.Instance.GetOrders().Where(order =>
+                order.Recipient.ToLower().Contains(searchKeyword) ||
+                order.PhoneN0.Contains(searchKeyword) ||
+                order.OrderID.ToString().Contains(searchKeyword) ||
+                order.Org.ToString().Contains(searchKeyword)
+            // Add more conditions based on your needs
+            ).ToList();
+
+            // Clear existing rows in DataGridView
+            guna2DataGridView1.Rows.Clear();
+
+            // Update the BindingSource with the filtered data
+            seeOrderBindingSource.DataSource = filteredOrders;
+
+            // Refresh the DataGridView to reflect the changes
+            guna2DataGridView1.Refresh();
         }
     }
 }

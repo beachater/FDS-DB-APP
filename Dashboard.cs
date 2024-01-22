@@ -171,5 +171,12 @@ namespace FDS_application
             OrderHistory ohUC = new OrderHistory();
             addUserControl(ohUC);
         }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            LoginForm newLog = new LoginForm();
+            newLog.Show();
+            this.Hide();
+        }
     }
 }

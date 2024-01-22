@@ -46,6 +46,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.searchButton = new Guna.UI2.WinForms.Guna2Button();
+            this.searchTxt = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2DataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -185,7 +187,6 @@
             this.guna2DataGridView2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(65)))));
             this.guna2DataGridView2.Location = new System.Drawing.Point(15, 392);
             this.guna2DataGridView2.Name = "guna2DataGridView2";
-            this.guna2DataGridView2.ReadOnly = true;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -210,7 +211,7 @@
             this.guna2DataGridView2.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.guna2DataGridView2.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.guna2DataGridView2.ThemeStyle.HeaderStyle.Height = 20;
-            this.guna2DataGridView2.ThemeStyle.ReadOnly = true;
+            this.guna2DataGridView2.ThemeStyle.ReadOnly = false;
             this.guna2DataGridView2.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.guna2DataGridView2.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.guna2DataGridView2.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -243,6 +244,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.searchButton);
+            this.panel1.Controls.Add(this.searchTxt);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.guna2DataGridView1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -250,6 +253,43 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 570);
             this.panel1.TabIndex = 15;
+            // 
+            // searchButton
+            // 
+            this.searchButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.searchButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.searchButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.searchButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.searchButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(65)))));
+            this.searchButton.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchButton.ForeColor = System.Drawing.Color.White;
+            this.searchButton.Location = new System.Drawing.Point(703, 43);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.PressedColor = System.Drawing.Color.BlueViolet;
+            this.searchButton.Size = new System.Drawing.Size(72, 19);
+            this.searchButton.TabIndex = 15;
+            this.searchButton.Text = "Search";
+            this.searchButton.Click += new System.EventHandler(this.guna2Button1_Click_1);
+            // 
+            // searchTxt
+            // 
+            this.searchTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchTxt.DefaultText = "";
+            this.searchTxt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.searchTxt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.searchTxt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchTxt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchTxt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.searchTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchTxt.Location = new System.Drawing.Point(519, 36);
+            this.searchTxt.Name = "searchTxt";
+            this.searchTxt.PasswordChar = '\0';
+            this.searchTxt.PlaceholderText = "";
+            this.searchTxt.SelectedText = "";
+            this.searchTxt.Size = new System.Drawing.Size(178, 29);
+            this.searchTxt.TabIndex = 14;
+            this.searchTxt.TextChanged += new System.EventHandler(this.guna2TextBox1_TextChanged);
             // 
             // SeeOrders
             // 
@@ -280,5 +320,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn newCheckItem;
         private System.Windows.Forms.DataGridViewComboBoxColumn cmbStatus;
         private System.Windows.Forms.Panel panel1;
+        private Guna.UI2.WinForms.Guna2TextBox searchTxt;
+        private Guna.UI2.WinForms.Guna2Button searchButton;
     }
 }

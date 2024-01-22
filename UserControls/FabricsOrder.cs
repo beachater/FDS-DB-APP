@@ -17,7 +17,7 @@ namespace FDS_application.UserControls
     public partial class FabricsOrder :System.Windows.Forms.UserControl
     {
         private int orderId;
-        private CustomerOrderTransactionDAO dao = new CustomerOrderTransactionDAO();
+        //private CustomerOrderTransactionDAO dao = new CustomerOrderTransactionDAO();
         private ItemGetDAO itemDAO;
 
         public FabricsOrder(ItemGetDAO itemDAO) : this()  // Overloaded constructor
@@ -48,7 +48,7 @@ namespace FDS_application.UserControls
         {
             try
             {
-                List<string> fabricTypes = dao.GetFabricTypes();  // Call the method on the DAO object
+                List<string> fabricTypes = CustomerOrderTransactionDAO.Instance.GetFabricTypes();  // Call the method on the DAO object
                 fabricTypecmb.Items.AddRange(fabricTypes.ToArray());
             }
             catch (Exception ex)

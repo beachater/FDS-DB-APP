@@ -15,13 +15,13 @@ namespace FDS_application
     {
         BindingSource seeOrderHistoryBindingSource = new BindingSource();
         BindingSource seeOrderItemHistoryBindingSource = new BindingSource();
-        OrderHistoryDAO ordH = new OrderHistoryDAO();
-        SeeOrderDAO seeOrder = new SeeOrderDAO();
-        ItemGetDAO dao = new ItemGetDAO();
+        //OrderHistoryDAO ordH = new OrderHistoryDAO();
+        //SeeOrderDAO seeOrder = new SeeOrderDAO();
+        //ItemGetDAO dao = new ItemGetDAO();
         public OrderHistory()
         {
             InitializeComponent();
-            seeOrderHistoryBindingSource.DataSource = ordH.GetOrderHistory();
+            seeOrderHistoryBindingSource.DataSource = OrderHistoryDAO.Instance.GetOrderHistory();
             orderHistorDataGrid.DataSource = seeOrderHistoryBindingSource;
             orderHistorDataGrid.Refresh();
             
@@ -37,7 +37,7 @@ namespace FDS_application
 
                 int orderId = Convert.ToInt32(orderHistorDataGrid.Rows[e.RowIndex].Cells["OrderID"].Value);
 
-                seeOrderItemHistoryBindingSource.DataSource = seeOrder.GetOrderItems(orderId);
+                seeOrderItemHistoryBindingSource.DataSource = SeeOrderDAO.Instance.GetOrderItems(orderId);
                 checkOHItemDataGrid.DataSource = seeOrderItemHistoryBindingSource;
                 checkOHItemDataGrid.Refresh();
 
@@ -45,6 +45,27 @@ namespace FDS_application
 
 
             }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            // Get the search keyword from the TextBox
+            string searchKeyword = searchTxt.Text.ToString().Trim().ToLower();
+
+            // Filter the existing data based on the search keyword
+            List<OrderHistoryDAO.SeeOrderHistory> filteredOrders = OrderHistoryDAO.Instance.GetOrderHistory().Where(order =>
+                order.Recipient.ToLower().Contains(searchKeyword) ||
+                order.PhoneN0.Contains(searchKeyword) ||
+                order.OrderID.ToString().Contains(searchKeyword) ||
+                order.Org.ToString().Contains(searchKeyword)
+            // Add more conditions based on your needs
+            ).ToList();
+
+            // Update the BindingSource with the filtered data
+            seeOrderHistoryBindingSource.DataSource = filteredOrders;
+
+            // Refresh the DataGridView to reflect the changes
+            orderHistorDataGrid.Refresh();
         }
     }
 }

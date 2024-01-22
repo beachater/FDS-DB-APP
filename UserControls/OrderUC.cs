@@ -14,18 +14,19 @@ namespace FDS_application.UserControls
     {
         BindingSource totalItemsBindingSource = new BindingSource();
         private int orderId;
-        ItemGetDAO itemDAO = new ItemGetDAO();
-        CustomerDAO cusDAO = new CustomerDAO();
+        private bool isCustomerDesign = false;
+        //ItemGetDAO itemDAO = new ItemGetDAO();
+        //CustomerDAO cusDAO = new CustomerDAO();
 
 
         public OrderUC()
         {
             InitializeComponent();
             
-            itemDAO.SetOrderId(orderId);
+            ItemGetDAO.Instance.SetOrderId(orderId);
 
-            itemDAO.DataChanged += ItemDAO_DataChanged;
-            itemDAO.DataChanged += UpdateTotalPriceDisplay;
+            ItemGetDAO.Instance.DataChanged += ItemDAO_DataChanged;
+            ItemGetDAO.Instance.DataChanged += UpdateTotalPriceDisplay;
 
 
             //totalItemsBindingSource.DataSource = itemDAO.GetItems();
@@ -61,9 +62,9 @@ namespace FDS_application.UserControls
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             //ItemGetDAO itemDAO = new ItemGetDAO();
-            itemDAO.SetOrderId(orderId);
+            ItemGetDAO.Instance.SetOrderId(orderId);
 
-            FabricsOrder uc = new FabricsOrder(itemDAO);
+            FabricsOrder uc = new FabricsOrder(ItemGetDAO.Instance);
 
             uc.SetOrderId(this.orderId);
 
@@ -72,35 +73,34 @@ namespace FDS_application.UserControls
 
         private void gBannersButton_Click(object sender, EventArgs e)
         {
-            itemDAO.SetOrderId(orderId);
+            ItemGetDAO.Instance.SetOrderId(orderId);
 
-            BannersOrders uc = new BannersOrders(itemDAO);
+            BannersOrders uc = new BannersOrders(ItemGetDAO.Instance);
             uc.SetOrderId(this.orderId);
             addUserControl(uc);
         }
 
         private void gGlassButton_Click(object sender, EventArgs e)
         {
-            itemDAO.SetOrderId(orderId);
+            ItemGetDAO.Instance.SetOrderId(orderId);
 
-            GlassOrders uc = new GlassOrders(itemDAO);
+            GlassOrders uc = new GlassOrders(ItemGetDAO.Instance);
             uc.SetOrderId(this.orderId);
             addUserControl(uc);
         }
 
         private void gWoodButton_Click(object sender, EventArgs e)
         {
-            itemDAO.SetOrderId(orderId);
+            ItemGetDAO.Instance.SetOrderId(orderId);
 
-            WoodOrders uc = new WoodOrders(itemDAO);
+            WoodOrders uc = new WoodOrders(ItemGetDAO.Instance);
             uc.SetOrderId(this.orderId);
             addUserControl(uc);
         }
         private void ItemDAO_DataChanged(object sender, EventArgs e)
-        {
-            totalItemDataGrid.Columns["deleteColumn"].Visible = true;
-            itemDAO.SetOrderId(orderId);
-            totalItemsBindingSource.DataSource = itemDAO.GetItems();
+        { 
+            ItemGetDAO.Instance.SetOrderId(orderId);
+            totalItemsBindingSource.DataSource = ItemGetDAO.Instance.GetItems();
             totalItemDataGrid.DataSource = totalItemsBindingSource;
             
             totalItemsBindingSource.ResetBindings(false);
@@ -108,8 +108,8 @@ namespace FDS_application.UserControls
 
         private void test_Click(object sender, EventArgs e)
         {
-            itemDAO.SetOrderId(orderId);
-            totalItemsBindingSource.DataSource = itemDAO.GetItems();
+            ItemGetDAO.Instance.SetOrderId(orderId);
+            totalItemsBindingSource.DataSource = ItemGetDAO.Instance.GetItems();
 
             totalItemsBindingSource.ResetBindings(false);
             
@@ -126,7 +126,7 @@ namespace FDS_application.UserControls
                 int orderItemId = Convert.ToInt32(totalItemDataGrid.Rows[e.RowIndex].Cells["ID"].Value);
 
                 // Call the DAO method to delete the order item
-                itemDAO.DeleteOrderItemSpecifications(orderItemId);
+                ItemGetDAO.Instance.DeleteOrderItemSpecifications(orderItemId);
 
                 // Remove the row from the DataGridView
                 totalItemDataGrid.Rows.RemoveAt(e.RowIndex);
@@ -137,8 +137,15 @@ namespace FDS_application.UserControls
         }
         public void UpdateTotalPriceDisplay(object sender, EventArgs e)
         {
-            // Update the text of the label based on the entered quantity and size
-            TotalPriceDisp.Text = $"{itemDAO.GetSumOfUnitPrices(this.orderId)} PHP";
+            decimal totalPrice = ItemGetDAO.Instance.GetSumOfUnitPrices(this.orderId);
+
+            if (!isCustomerDesign)
+            {
+                // Add an additional charge of 150 if the design is not from the customer
+                totalPrice += 150m;
+            }
+
+            TotalPriceDisp.Text = $"{totalPrice} PHP";
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -146,24 +153,33 @@ namespace FDS_application.UserControls
             // Check if an item is selected in the ComboBox
             if (paymentMethodcmb.SelectedIndex != -1)
             {
-                // Get the selected payment method
                 string paymentMethod = paymentMethodcmb.SelectedItem.ToString();
 
-                // Now you can use the paymentMethod variable in your method call
-                cusDAO.UpdateOrderTransactionAndAddPayment(orderId, itemDAO.GetSumOfUnitPrices(this.orderId), paymentMethod);
-                MessageBox.Show("SUcces");
+                // Pass isCustomerDesign to the UpdateOrderTransactionAndAddPayment method
+                CustomerDAO.Instance.UpdateOrderTransactionAndAddPayment(orderId, ItemGetDAO.Instance.GetSumOfUnitPrices(this.orderId), paymentMethod, isCustomerDesign);
 
+                MessageBox.Show("Success");
             }
             else
             {
-                // Handle the case where no payment method is selected
                 MessageBox.Show("Please select a payment method.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            dashOrder backtoDO = new dashOrder();
+            backtoDO.Show();
+            this.Hide();
+            
+
         }
 
         private void paymentMethodcmb_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ownDes_CheckedChanged(object sender, EventArgs e)
+        {
+            isCustomerDesign = ownDes.Checked;
         }
     }
 }

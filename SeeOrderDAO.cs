@@ -12,16 +12,45 @@ namespace FDS_application
   
     public class SeeOrderDAO
     {
+        private static SeeOrderDAO instance;
         private string username;
         private string password;
-        private string connectionString = "datasource=localhost;port=3307;username=root;password=root;database=db_infinytarwerks";
+        private string connectionString;
 
         public void setUser(string username, string password)
         {
             this.username = username;
             this.password = password;
+            // Assuming MySQL connection for the given example
+            this.connectionString = $"datasource=localhost;port=3307;username={this.username};password={this.password};database=db_infinytarwerks";
         }
-
+        public static SeeOrderDAO Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SeeOrderDAO();
+                }
+                return instance;
+            }
+        }
+        public bool TestConnection()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                // Handle exception if connection fails
+                return false;
+            }
+        }
         public class SeeOrder
         {
             public string Recipient { get; set; }
@@ -29,6 +58,7 @@ namespace FDS_application
             public int OrderID { get; set; }
             public DateTime Date { get; set; }
             public decimal TotalPrice { get; set; }
+            public string Org { get; set; }
             //public OrderStatus Status { get; set; }
         }
 
@@ -62,48 +92,67 @@ namespace FDS_application
             public string Note { get; set; }
 
         }
-            public List<SeeOrder> GetOrders()
+        public List<SeeOrder> GetOrders()
+        {
+            List<SeeOrder> returnThese = new List<SeeOrder>();
+            try
             {
-                List<SeeOrder> returnThese = new List<SeeOrder>();
-                try
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    connection.Open();
+
+                    string query = @"
+            SELECT
+    o.order_id,
+    o.order_date,
+    o.total_price,
+    o.status,
+    c.first_name,
+    c.last_name,
+    GROUP_CONCAT(DISTINCT cpn.phone_no ORDER BY cpn.phone_num_id DESC) AS phone_no,
+    GROUP_CONCAT(DISTINCT co.org_name) AS org_names
+FROM
+    tb_order_transaction o
+JOIN tb_customers c ON o.customer_id = c.customer_id
+LEFT JOIN tb_cust_organization co ON c.customer_id = co.customer_id
+LEFT JOIN tb_cust_phone_num cpn ON c.customer_id = cpn.customer_id
+WHERE
+    o.status != 'finished'
+GROUP BY
+    o.order_id, o.order_date, o.total_price, o.status, c.first_name, c.last_name;
+;";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        connection.Open();
-
-                        string query = "SELECT o.order_id, o.order_date, o.total_price,o.status, c.first_name, c.last_name, c.phone_no \r\nFROM tb_order_transaction o \r\nJOIN tb_customers c ON o.customer_id = c.customer_id \r\nWHERE o.status != 'finished';";
-
-                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            using (MySqlDataReader reader = command.ExecuteReader())
+                            while (reader.Read())
                             {
-                                while (reader.Read())
+                                SeeOrder order = new SeeOrder
                                 {
-                                    SeeOrder order = new SeeOrder
-                                    {
-                                        OrderID = Convert.ToInt32(reader["order_id"]),
-                                        Date = reader["order_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["order_date"]),
-                                        TotalPrice = reader["total_price"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["total_price"]),
-                                        //Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), reader["status"].ToString()),
-                                        Recipient = $"{reader["first_name"]} {reader["last_name"]}",
-                                        PhoneN0 = reader["phone_no"] == DBNull.Value ? string.Empty : reader["phone_no"].ToString()
-                                    };
-                                   // Console.WriteLine($"OrderID: {order.OrderID}, CustomerID: {reader["customer_id"]}, Status: {order.Status}, Recipient: {order.Recipient}, PhoneN0: {order.PhoneN0}");
-                                    System.Diagnostics.Debug.WriteLine($"OrderID: {order.OrderID}, Recipient: {order.Recipient}, PhoneN0: {order.PhoneN0}");
+                                    OrderID = Convert.ToInt32(reader["order_id"]),
+                                    Date = reader["order_date"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["order_date"]),
+                                    TotalPrice = reader["total_price"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["total_price"]),
+                                    Recipient = $"{reader["first_name"]} {reader["last_name"]}",
+                                    PhoneN0 = reader["phone_no"] == DBNull.Value ? string.Empty : reader["phone_no"].ToString(),
+                                    Org = reader["org_names"] == DBNull.Value ? string.Empty : reader["org_names"].ToString()
+                                };
 
-                                    returnThese.Add(order);
-                                }
+                                System.Diagnostics.Debug.WriteLine($"OrderID: {order.OrderID}, Recipient: {order.Recipient}, PhoneN0: {order.PhoneN0}, org: {order.Org}");
+
+                                returnThese.Add(order);
                             }
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error getting orders: {ex.Message}");
-                }
-
-                return returnThese;
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting orders: {ex.Message}");
+            }
+
+            return returnThese;
+        }
         public List<SeeOrderItem> GetOrderItems(int orderId)
         {
             List<SeeOrderItem> returnThese = new List<SeeOrderItem>();

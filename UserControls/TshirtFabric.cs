@@ -22,7 +22,7 @@ namespace FDS_application.UserControls
         {
             this.orderId = orderId;
         }
-        private CustomerDAO orderDAO = new CustomerDAO();
+        //private CustomerDAO orderDAO = new CustomerDAO();
 
         public TshirtFabric(ItemGetDAO itemDAO) : this()  // Overloaded constructor
         {
@@ -102,12 +102,12 @@ namespace FDS_application.UserControls
             if (int.TryParse(quanTxt.Text, out quantity))
             {
                 // Now 'quantity' holds the parsed integer value
-                int orderItemId = orderDAO.InsertOrderItem(orderId, productSKU, quantity, size);
+                int orderItemId = CustomerDAO.Instance.InsertOrderItem(orderId, productSKU, quantity, size);
 
                 if (orderItemId > 0)
                 {
                     // Insert order item specifications
-                    bool orderItemSpecInserted = orderDAO.insertOrderItemSpecifications(orderItemId, size, design, material, note);
+                    bool orderItemSpecInserted = CustomerDAO.Instance.insertOrderItemSpecifications(orderItemId, size, design, material, note);
 
                     if (orderItemSpecInserted)
                     {
@@ -156,7 +156,7 @@ namespace FDS_application.UserControls
             if (int.TryParse(quanTxt.Text, out int quantity) && !string.IsNullOrEmpty(size))
             {
                 // Update the text of the label based on the entered quantity and size
-                priceDisplay.Text = $"{orderDAO.GetUnitPriceBySkuAndSize(productSKU, size) * quantity} PHP";
+                priceDisplay.Text = $"{CustomerDAO.Instance.GetUnitPriceBySkuAndSize(productSKU, size) * quantity} PHP";
             }
             else
             {

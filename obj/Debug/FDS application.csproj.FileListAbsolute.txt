@@ -7,7 +7,6 @@ D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.csproj.
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.csproj.CoreCompileInputs.cache
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.exe
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS application.pdb
-D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.Tst.resources
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.frmNewService.resources
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.frmFindService.resources
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UCFindService.resources
@@ -60,3 +59,4 @@ D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UserCon
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UserControls.MedalGlass.resources
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.UserControls.SeeOrders.resources
 D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.OrderHistory.resources
+D:\FDS APP\FDS\FDS application\FDS application\obj\Debug\FDS_application.LoginForm.resources

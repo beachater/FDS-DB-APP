@@ -14,7 +14,7 @@ namespace FDS_application.UserControls
     {
         private ItemGetDAO itemDAO;
         private int orderId;
-        private CustomerOrderTransactionDAO dao = new CustomerOrderTransactionDAO();
+        //private CustomerOrderTransactionDAO dao = new CustomerOrderTransactionDAO();
         public GlassOrders(ItemGetDAO itemDAO) : this()  // Overloaded constructor
         {
             this.itemDAO = itemDAO;  // Set the instance
@@ -27,7 +27,7 @@ namespace FDS_application.UserControls
         {
             try
             {
-                List<string> glasstypes = dao.GetGlassTypes();  // Call the method on the DAO object
+                List<string> glasstypes = CustomerOrderTransactionDAO.Instance.GetGlassTypes();  // Call the method on the DAO object
                 glassTypecmb.Items.AddRange(glasstypes.ToArray());
             }
             catch (Exception ex)

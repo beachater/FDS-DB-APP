@@ -8,15 +8,15 @@ namespace FDS_application.UserControls
     {
         BindingSource suppliesBindingSource = new BindingSource();
         BindingSource supplyOrderedBindingSource = new BindingSource();
-        Order_SuppliesDAO supDAO = new Order_SuppliesDAO();
-        SeeOrderDAO soDAO = new SeeOrderDAO();
+        //Order_SuppliesDAO supDAO = new Order_SuppliesDAO();
+        //SeeOrderDAO soDAO = new SeeOrderDAO();
 
         public SuppliesUC()
         {
             InitializeComponent();
-            suppliesBindingSource.DataSource = supDAO.GetStock();
+            suppliesBindingSource.DataSource = Order_SuppliesDAO.Instance.GetStock();
             productsDataGridView1.DataSource = suppliesBindingSource;
-            supplyOrderedBindingSource.DataSource = soDAO.GetSupplyOrders();
+            supplyOrderedBindingSource.DataSource = SeeOrderDAO.Instance.GetSupplyOrders();
             SODataGridView.DataSource = supplyOrderedBindingSource;
             prodcutStocksDataGrid.Refresh();
             SODataGridView.Refresh();
@@ -39,7 +39,7 @@ namespace FDS_application.UserControls
         {
             try
             {
-                List<string> product = soDAO.GetProducts();  // Call the method on the DAO object
+                List<string> product = SeeOrderDAO.Instance.GetProducts();  // Call the method on the DAO object
                 productCmb.Items.AddRange(product.ToArray());
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace FDS_application.UserControls
             {
                 supplierCmb.Items.Clear();  // Clear existing items before adding new ones
 
-                List<string> suppliers = soDAO.GetSupplierNames(productCmb.SelectedItem.ToString());
+                List<string> suppliers = SeeOrderDAO.Instance.GetSupplierNames(productCmb.SelectedItem.ToString());
                 supplierCmb.Items.AddRange(suppliers.ToArray());
             }
             catch (Exception ex)
@@ -129,14 +129,14 @@ namespace FDS_application.UserControls
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            string sku = supDAO.GetSku(productCmb.SelectedItem.ToString());
+            string sku = Order_SuppliesDAO.Instance.GetSku(productCmb.SelectedItem.ToString());
 
             if (int.TryParse(quanTxt.Text, out int quantity) && decimal.TryParse(amountTxt.Text, out decimal amount))
             {
                 string supplier = supplierCmb.SelectedItem.ToString();
-                supDAO.InsertSupplyOrder(quantity, amount, supplier, sku);
+                Order_SuppliesDAO.Instance.InsertSupplyOrder(quantity, amount, supplier, sku);
 
-                supplyOrderedBindingSource.DataSource = soDAO.GetSupplyOrders();
+                supplyOrderedBindingSource.DataSource = SeeOrderDAO.Instance.GetSupplyOrders();
             }
             else
             {
@@ -165,10 +165,10 @@ namespace FDS_application.UserControls
 
                 // Retrieve the relevant data for the row
                 int supplyId = Convert.ToInt32(SODataGridView.Rows[e.RowIndex].Cells["SupplyID"].Value);
-                string sku = supDAO.GetSku(SODataGridView.Rows[e.RowIndex].Cells["Product"].Value.ToString());
+                string sku = Order_SuppliesDAO.Instance.GetSku(SODataGridView.Rows[e.RowIndex].Cells["Product"].Value.ToString());
 
                 // Update the database with the new value
-                supDAO.UpdateInStockStatus(supplyId, isChecked, sku);
+                Order_SuppliesDAO.Instance.UpdateInStockStatus(supplyId, isChecked, sku);
             }
             else if (e.ColumnIndex == SODataGridView.Columns["supDelete"].Index && e.RowIndex >= 0)
             {
@@ -176,7 +176,7 @@ namespace FDS_application.UserControls
                 int supplyID = Convert.ToInt32(SODataGridView.Rows[e.RowIndex].Cells["SupplyID"].Value);
 
                 // Call the DAO method to delete the order item
-                bool deleted = supDAO.DeleteSupplyOrderItem(supplyID);
+                bool deleted = Order_SuppliesDAO.Instance.DeleteSupplyOrderItem(supplyID);
 
                 if (deleted)
                 {
@@ -191,8 +191,8 @@ namespace FDS_application.UserControls
                 SODataGridView.Rows.RemoveAt(e.RowIndex);
             }
 
-            supplyOrderedBindingSource.DataSource = soDAO.GetSupplyOrders();
-            suppliesBindingSource.DataSource = supDAO.GetStock();
+            supplyOrderedBindingSource.DataSource = SeeOrderDAO.Instance.GetSupplyOrders();
+            suppliesBindingSource.DataSource = Order_SuppliesDAO.Instance.GetStock();
             prodcutStocksDataGrid.Refresh();
             SODataGridView.Refresh();
 

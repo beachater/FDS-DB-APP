@@ -11,12 +11,12 @@ using MySql.Data.MySqlClient;
 
 namespace FDS_application
 {
-    public partial class Tst : Form
+    public partial class LoginForm : Form
     {
         private MySqlConnection mysqlconn;
       
 
-        public Tst()
+        public LoginForm()
         {
             InitializeComponent();
             pictureBox1 = new TranspPictureBox();
@@ -73,32 +73,38 @@ namespace FDS_application
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string username, password;
+            string username2, password2;
 
-            username = tbUsername.Text;
-            password = tbPassword.Text;
+            username2 = tbUsername.Text;
+            password2 = tbPassword.Text;
 
+            SeeOrderDAO.Instance.setUser(username2, password2);
 
-            String query = "SELECT * FROM USERS WHERE userName = '"+tbUsername.Text+"' AND password = '"+tbPassword.Text+"' ";
-            MySqlDataAdapter msda = new MySqlDataAdapter(query, mysqlconn);
-
-            DataTable dtable = new DataTable();
-            msda.Fill(dtable);
-
-            if(dtable.Rows.Count > 0)
+            if (SeeOrderDAO.Instance.TestConnection())
             {
-                username = tbUsername.Text;
-                password = tbPassword.Text;
-
-                dashOrder d1 = new dashOrder();
-                d1.Show();
+                // Connection succeeded, proceed to call user control or form
+                // Example: Open a new form
+                // SomeOtherForm form = new SomeOtherForm();
+                //form.Show();
+                ItemGetDAO.Instance.setUser(username2, password2);
+                CustomerDAO.Instance.setUser(username2, password2);
+                OrderHistoryDAO.Instance.setUser(username2, password2);
+                Order_SuppliesDAO.Instance.setUser(username2, password2);
+                CustomerOrderTransactionDAO.Instance.setUser(username2, password2);
+                MessageBox.Show("Connection succeeds");
+                dashOrder dashorderForm = new dashOrder();
+                dashorderForm.Show();
                 this.Hide();
+
+      
             }
             else
             {
-                MessageBox.Show("Invalid deets");
+                // Connection failed, handle accordingly (show an error message, etc.)
+                MessageBox.Show("Connection failed. Check your username and password.");
             }
-           
+
+
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)

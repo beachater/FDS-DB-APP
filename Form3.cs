@@ -24,7 +24,7 @@ namespace FDS_application
 
         private void btnHome2_Click(object sender, EventArgs e)
         {
-            Tst f1 = new Tst();
+            LoginForm f1 = new LoginForm();
             f1.Show();
             this.Hide();
         }

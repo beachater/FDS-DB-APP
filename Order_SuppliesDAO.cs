@@ -9,8 +9,29 @@ namespace FDS_application
 {                               // text = username.txt
     internal class Order_SuppliesDAO
     {
-        private string connectionString = "datasource=localhost;port=3307;username=root;password=root;database=db_infinytarwerks";
+        private static Order_SuppliesDAO instance;
+        private string username;
+        private string password;
+        private string connectionString;
 
+        public void setUser(string username, string password)
+        {
+            this.username = username;
+            this.password = password;
+            // Assuming MySQL connection for the given example
+            this.connectionString = $"datasource=localhost;port=3307;username={this.username};password={this.password};database=db_infinytarwerks";
+        }
+        public static Order_SuppliesDAO Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Order_SuppliesDAO();
+                }
+                return instance;
+            }
+        }
         public class OrderSupply
         {
             public string Product { get; set; }
