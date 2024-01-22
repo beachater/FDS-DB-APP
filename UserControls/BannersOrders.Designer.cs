@@ -171,9 +171,9 @@
             this.label2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(245, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(163, 16);
+            this.label2.Size = new System.Drawing.Size(159, 16);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Size ( by square meters)";
+            this.label2.Text = "Size (by square meters)";
             // 
             // quantityTxt
             // 

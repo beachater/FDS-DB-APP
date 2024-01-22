@@ -94,9 +94,9 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.supplierCmb);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(462, 0);
+            this.panel1.Location = new System.Drawing.Point(556, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(354, 570);
+            this.panel1.Size = new System.Drawing.Size(260, 570);
             this.panel1.TabIndex = 2;
             // 
             // guna2Button1
@@ -109,16 +109,16 @@
             this.guna2Button1.FillColor = System.Drawing.Color.DimGray;
             this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button1.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button1.Location = new System.Drawing.Point(87, 412);
+            this.guna2Button1.Location = new System.Drawing.Point(40, 412);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(180, 45);
             this.guna2Button1.TabIndex = 22;
-            this.guna2Button1.Text = "Check Out";
+            this.guna2Button1.Text = "Proceed";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // quanTxt
             // 
-            this.quanTxt.Location = new System.Drawing.Point(18, 289);
+            this.quanTxt.Location = new System.Drawing.Point(16, 300);
             this.quanTxt.Name = "quanTxt";
             this.quanTxt.Size = new System.Drawing.Size(100, 20);
             this.quanTxt.TabIndex = 17;
@@ -134,7 +134,7 @@
             this.productCmb.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.productCmb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.productCmb.ItemHeight = 30;
-            this.productCmb.Location = new System.Drawing.Point(18, 222);
+            this.productCmb.Location = new System.Drawing.Point(16, 165);
             this.productCmb.Name = "productCmb";
             this.productCmb.Size = new System.Drawing.Size(132, 36);
             this.productCmb.TabIndex = 0;
@@ -142,7 +142,7 @@
             // 
             // amountTxt
             // 
-            this.amountTxt.Location = new System.Drawing.Point(18, 346);
+            this.amountTxt.Location = new System.Drawing.Point(143, 300);
             this.amountTxt.Name = "amountTxt";
             this.amountTxt.Size = new System.Drawing.Size(100, 20);
             this.amountTxt.TabIndex = 21;
@@ -152,7 +152,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(15, 204);
+            this.label9.Location = new System.Drawing.Point(13, 147);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 15);
             this.label9.TabIndex = 15;
@@ -164,7 +164,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 328);
+            this.label4.Location = new System.Drawing.Point(140, 282);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 15);
             this.label4.TabIndex = 20;
@@ -176,7 +176,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 271);
+            this.label2.Location = new System.Drawing.Point(13, 282);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
             this.label2.TabIndex = 16;
@@ -188,7 +188,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(188, 204);
+            this.label3.Location = new System.Drawing.Point(13, 208);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 15);
             this.label3.TabIndex = 19;
@@ -206,7 +206,7 @@
             this.supplierCmb.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.supplierCmb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.supplierCmb.ItemHeight = 30;
-            this.supplierCmb.Location = new System.Drawing.Point(191, 222);
+            this.supplierCmb.Location = new System.Drawing.Point(16, 226);
             this.supplierCmb.Name = "supplierCmb";
             this.supplierCmb.Size = new System.Drawing.Size(132, 36);
             this.supplierCmb.TabIndex = 18;
@@ -296,7 +296,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(462, 570);
+            this.panel2.Size = new System.Drawing.Size(556, 570);
             this.panel2.TabIndex = 3;
             // 
             // panel3
@@ -308,7 +308,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(462, 570);
+            this.panel3.Size = new System.Drawing.Size(556, 570);
             this.panel3.TabIndex = 19;
             // 
             // SODataGridView
@@ -343,7 +343,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.SODataGridView.DefaultCellStyle = dataGridViewCellStyle8;
             this.SODataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            this.SODataGridView.Location = new System.Drawing.Point(30, 335);
+            this.SODataGridView.Location = new System.Drawing.Point(31, 335);
             this.SODataGridView.Name = "SODataGridView";
             this.SODataGridView.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -355,7 +355,7 @@
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.SODataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.SODataGridView.RowHeadersVisible = false;
-            this.SODataGridView.Size = new System.Drawing.Size(407, 205);
+            this.SODataGridView.Size = new System.Drawing.Size(498, 205);
             this.SODataGridView.TabIndex = 20;
             this.SODataGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.SODataGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -407,7 +407,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(26, 295);
+            this.label7.Location = new System.Drawing.Point(27, 295);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(156, 23);
             this.label7.TabIndex = 19;
@@ -443,7 +443,7 @@
             dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.productsDataGridView1.DefaultCellStyle = dataGridViewCellStyle12;
             this.productsDataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(189)))), ((int)(((byte)(141)))));
-            this.productsDataGridView1.Location = new System.Drawing.Point(30, 71);
+            this.productsDataGridView1.Location = new System.Drawing.Point(31, 71);
             this.productsDataGridView1.Name = "productsDataGridView1";
             this.productsDataGridView1.ReadOnly = true;
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -455,7 +455,7 @@
             dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.productsDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.productsDataGridView1.RowHeadersVisible = false;
-            this.productsDataGridView1.Size = new System.Drawing.Size(407, 205);
+            this.productsDataGridView1.Size = new System.Drawing.Size(498, 205);
             this.productsDataGridView1.TabIndex = 18;
             this.productsDataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.productsDataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -484,12 +484,13 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 31);
+            this.label5.Location = new System.Drawing.Point(27, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(145, 23);
             this.label5.TabIndex = 12;
             this.label5.Tag = "";
             this.label5.Text = "Product Stocks";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // SuppliesUC
             // 

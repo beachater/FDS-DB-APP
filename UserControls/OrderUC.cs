@@ -22,7 +22,7 @@ namespace FDS_application.UserControls
         public OrderUC()
         {
             InitializeComponent();
-            
+
             ItemGetDAO.Instance.SetOrderId(orderId);
 
             ItemGetDAO.Instance.DataChanged += ItemDAO_DataChanged;
@@ -102,6 +102,21 @@ namespace FDS_application.UserControls
             ItemGetDAO.Instance.SetOrderId(orderId);
             totalItemsBindingSource.DataSource = ItemGetDAO.Instance.GetItems();
             totalItemDataGrid.DataSource = totalItemsBindingSource;
+            for (int i = totalItemDataGrid.Rows.Count - 1; i >= 0; i--)
+            {
+                DataGridViewRow row = totalItemDataGrid.Rows[i];
+
+                // Check if the row is not a new, uncommitted row
+                if (!row.IsNewRow &&
+                    Convert.ToInt32(row.Cells["Quant"].Value) == 0 &&
+                    Convert.ToInt32(row.Cells["Price"].Value) == 0 &&
+                    Convert.ToInt32(row.Cells["ID"].Value) == 0)
+                {
+                    totalItemDataGrid.Rows.RemoveAt(i);
+                }
+            }
+
+            totalItemDataGrid.Columns["deleteColumn"].Visible = true;
             
             totalItemsBindingSource.ResetBindings(false);
         }
@@ -139,9 +154,9 @@ namespace FDS_application.UserControls
         {
             decimal totalPrice = ItemGetDAO.Instance.GetSumOfUnitPrices(this.orderId);
 
-            if (!isCustomerDesign)
+            if (!ownDes.Checked)
             {
-                // Add an additional charge of 150 if the design is not from the customer
+                //Add an additional charge of 150 if the design is not from the customer
                 totalPrice += 150m;
             }
 
@@ -156,7 +171,7 @@ namespace FDS_application.UserControls
                 string paymentMethod = paymentMethodcmb.SelectedItem.ToString();
 
                 // Pass isCustomerDesign to the UpdateOrderTransactionAndAddPayment method
-                CustomerDAO.Instance.UpdateOrderTransactionAndAddPayment(orderId, ItemGetDAO.Instance.GetSumOfUnitPrices(this.orderId), paymentMethod, isCustomerDesign);
+                CustomerDAO.Instance.UpdateOrderTransactionAndAddPayment(orderId, ItemGetDAO.Instance.GetSumOfUnitPrices(this.orderId), paymentMethod, ownDes.Checked);
 
                 MessageBox.Show("Success");
             }
@@ -179,7 +194,26 @@ namespace FDS_application.UserControls
 
         private void ownDes_CheckedChanged(object sender, EventArgs e)
         {
-            isCustomerDesign = ownDes.Checked;
+           
+        }
+
+        private void ownDes_CheckStateChanged(object sender, EventArgs e)
+        {
+            //isCustomerDesign = ownDes.Checked;
+            decimal totalPrice = ItemGetDAO.Instance.GetSumOfUnitPrices(this.orderId);
+
+            if (!ownDes.Checked)
+            {
+                // Add an additional charge of 150 if the design is not from the customer
+                totalPrice += 150m;
+            }
+            if (ownDes.Checked)
+            {
+                totalPrice += 0m;
+            }
+
+            TotalPriceDisp.Text = $"{totalPrice} PHP";
+
         }
     }
 }
