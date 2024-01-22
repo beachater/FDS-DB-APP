@@ -102,25 +102,25 @@ namespace FDS_application
                     connection.Open();
 
                     string query = @"
-            SELECT
-    o.order_id,
-    o.order_date,
-    o.total_price,
-    o.status,
-    c.first_name,
-    c.last_name,
-    GROUP_CONCAT(DISTINCT cpn.phone_no ORDER BY cpn.phone_num_id DESC) AS phone_no,
-    GROUP_CONCAT(DISTINCT co.org_name) AS org_names
-FROM
-    tb_order_transaction o
-JOIN tb_customers c ON o.customer_id = c.customer_id
-LEFT JOIN tb_cust_organization co ON c.customer_id = co.customer_id
-LEFT JOIN tb_cust_phone_num cpn ON c.customer_id = cpn.customer_id
-WHERE
-    o.status != 'finished'
-GROUP BY
-    o.order_id, o.order_date, o.total_price, o.status, c.first_name, c.last_name;
-;";
+                SELECT
+                    o.order_id,
+                    o.order_date,
+                    o.total_price,
+                    o.status,
+                    c.first_name,
+                    c.last_name,
+                    GROUP_CONCAT(DISTINCT cpn.phone_no ORDER BY cpn.phone_num_id DESC) AS phone_no,
+                    co.org_name  -- Display organization name associated with org_id
+                FROM
+                    tb_order_transaction o
+                JOIN tb_customers c ON o.customer_id = c.customer_id
+                LEFT JOIN tb_cust_organization co ON o.org_id = co.org_id
+                LEFT JOIN tb_cust_phone_num cpn ON c.customer_id = cpn.customer_id
+                WHERE
+                    o.status != 'finished'
+                GROUP BY
+                    o.order_id, o.order_date, o.total_price, o.status, c.first_name, c.last_name, co.org_id;
+            ";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -135,7 +135,7 @@ GROUP BY
                                     TotalPrice = reader["total_price"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["total_price"]),
                                     Recipient = $"{reader["first_name"]} {reader["last_name"]}",
                                     PhoneN0 = reader["phone_no"] == DBNull.Value ? string.Empty : reader["phone_no"].ToString(),
-                                    Org = reader["org_names"] == DBNull.Value ? string.Empty : reader["org_names"].ToString()
+                                    Org = reader["org_name"] == DBNull.Value ? string.Empty : reader["org_name"].ToString()
                                 };
 
                                 System.Diagnostics.Debug.WriteLine($"OrderID: {order.OrderID}, Recipient: {order.Recipient}, PhoneN0: {order.PhoneN0}, org: {order.Org}");

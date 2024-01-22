@@ -134,10 +134,11 @@ public class CustomerDAO
                 connection.Open();
 
                 // Check if the organization already exists for the customer
-                string checkOrganizationQuery = "SELECT org_id FROM tb_cust_organization WHERE customer_id = @CustomerId";
+                string checkOrganizationQuery = "SELECT org_id FROM tb_cust_organization WHERE customer_id = @CustomerId AND org_name = @OrgName";
                 using (MySqlCommand checkOrganizationCommand = new MySqlCommand(checkOrganizationQuery, connection))
                 {
                     checkOrganizationCommand.Parameters.AddWithValue("@CustomerId", customerId);
+                    checkOrganizationCommand.Parameters.AddWithValue("@OrgName", orgName);
 
                     object orgIdObject = checkOrganizationCommand.ExecuteScalar();
 
