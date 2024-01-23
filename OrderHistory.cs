@@ -23,6 +23,7 @@ namespace FDS_application
             InitializeComponent();
             seeOrderHistoryBindingSource.DataSource = OrderHistoryDAO.Instance.GetOrderHistory();
             orderHistorDataGrid.DataSource = seeOrderHistoryBindingSource;
+            orderHistorDataGrid.Columns["Date"].DefaultCellStyle.Format = "yyyy-MM-dd";
             orderHistorDataGrid.Refresh();
             
 

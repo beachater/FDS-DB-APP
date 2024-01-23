@@ -28,7 +28,7 @@ namespace FDS_application.UserControls
 
             // Set the DataSource again to apply the changes
             guna2DataGridView1.DataSource = seeOrderBindingSource;
-
+            guna2DataGridView1.Columns["Date"].DefaultCellStyle.Format = "yyyy-MM-dd";
             guna2DataGridView1.DataBindingComplete += Guna2DataGridView1_DataBindingComplete;
         }
 

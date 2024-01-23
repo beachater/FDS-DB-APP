@@ -117,9 +117,12 @@ namespace FDS_application.UserControls
                     totalItemDataGrid.Rows.RemoveAt(i);
                 }
             }
+            if(totalItemDataGrid.Columns["deleteColumn"].Visible == false )
+            {
+                totalItemDataGrid.Columns["deleteColumn"].Visible = true;
 
-            totalItemDataGrid.Columns["deleteColumn"].Visible = true;
-            
+            }
+
             totalItemsBindingSource.ResetBindings(false);
         }
 
