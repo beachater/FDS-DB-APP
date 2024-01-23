@@ -17,6 +17,7 @@ namespace FDS_application.UserControls
         private bool isCustomerDesign = false;
         //ItemGetDAO itemDAO = new ItemGetDAO();
         //CustomerDAO cusDAO = new CustomerDAO();
+        dashOrder orderDash;
 
 
         public OrderUC()
@@ -34,6 +35,7 @@ namespace FDS_application.UserControls
 
 
         }
+        
         public void SetRecipientName(string firstName, string lastName)
         {
             
@@ -180,10 +182,26 @@ namespace FDS_application.UserControls
                 MessageBox.Show("Please select a payment method.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            Form parentForm = this.FindForm();
+
+            // Close the parent form
+            if (parentForm != null)
+            {
+                parentForm.Close();
+            }
+            else
+            {
+                MessageBox.Show("Parent form not found.");
+            }
+
+            // Open a new dashOrder form
             dashOrder backtoDO = new dashOrder();
             backtoDO.Show();
-            this.Hide();
-            
+
+            // Create and set up SeeOrders user control
+            SeeOrders soUc = new SeeOrders();
+            backtoDO.addUserControl(soUc);
+
 
         }
 

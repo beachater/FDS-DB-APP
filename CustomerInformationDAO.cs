@@ -183,7 +183,7 @@ public class CustomerDAO
             return getCustomerIdCommand.ExecuteScalar().ToString();
         }
     }
-    public int InsertOrderTransaction(string customerId, int orgId, DateTime orderDate, bool isCustomerDesign)
+    public int InsertOrderTransaction(string customerId, int? orgId, DateTime orderDate, bool isCustomerDesign)
     {
         try
         {

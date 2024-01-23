@@ -136,7 +136,7 @@ namespace FDS_application
         }
         */
         
-        private void addUserControl(UserControl userControl)
+        public void addUserControl(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
             dashboardPanel.Controls.Clear();

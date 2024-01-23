@@ -61,17 +61,17 @@ namespace FDS_application
 
                     string query = @"
                         SELECT
-                            p.product_name AS Product,
-                            oi.sku AS SKU,
-                            pc.category_name AS Category,
-                            p.product_stocks AS Stock,
-                            GREATEST(SUM(oi.quantity) - p.product_stocks, 0) AS Needed
-                        FROM
-                            tb_order_items oi
-                            JOIN tb_product p ON oi.sku = p.sku
-                            JOIN tb_product_categories pc ON p.category_id = pc.category_id
-                        GROUP BY
-                            p.product_name, oi.sku, pc.category_name, p.product_stocks;";
+    p.product_name AS Product,
+    p.sku AS SKU,
+    pc.category_name AS Category,
+    p.product_stocks AS Stock,
+    GREATEST(SUM(COALESCE(oi.quantity, 0)) - p.product_stocks, 0) AS Needed
+FROM
+    tb_product p
+JOIN tb_product_categories pc ON p.category_id = pc.category_id
+LEFT JOIN tb_order_items oi ON oi.sku = p.sku
+GROUP BY
+    p.product_name, p.sku, pc.category_name, p.product_stocks;";
 
                     using (var command = new MySqlCommand(query, connection))
                     using (var reader = command.ExecuteReader())

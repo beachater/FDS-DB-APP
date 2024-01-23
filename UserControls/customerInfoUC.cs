@@ -88,65 +88,51 @@ namespace FDS_application.UserControls
                 // Retrieve the customer ID
                 string customerId = CustomerDAO.Instance.GetCustomerId(firstName, lastName);
 
-                // Insert organization
-                if (!string.IsNullOrWhiteSpace(organizationTxt.Text))
+                string orgName = organizationTxt.Text;
+                int? orgId = null;  // Use nullable int
+
+                // Insert organization if the organization text box is not empty
+                if (!string.IsNullOrWhiteSpace(orgName))
                 {
-                    int orgId = CustomerDAO.Instance.InsertOrganization(customerId, organizationTxt.Text);
-                    if (orgId > 0)
+                    orgId = CustomerDAO.Instance.InsertOrganization(customerId, orgName);
+                    if (orgId == null || orgId.Value <= 0)
                     {
-                        MessageBox.Show("Organization inserted successfully!");
-
-                        DateTime orderDate = DateTime.Now;
-                        int orderId = CustomerDAO.Instance.InsertOrderTransaction(customerId, orgId, orderDate, false);
-
-                        if (orderId > 0)
-                        {
-                            string fName = this.FirstName;
-                            string lName = this.LastName;
-
-                            // Pass orderId to OrderUC
-                            OrderUC uc = new OrderUC();
-                            uc.SetRecipientName(fName, lName);
-
-                            // Set orderId in OrderUC
-                            uc.SetOrderId(orderId);
-
-                            addUserControl(uc);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to insert order transaction.");
-                        }
+                        MessageBox.Show("Failed to insert organization.");
+                        return;
                     }
                     else
                     {
-                        MessageBox.Show("Failed to insert organization.");
+                        MessageBox.Show($"Organization inserted successfully with orgId: {orgId}");
                     }
                 }
                 else
                 {
-                    // If organization is not specified, proceed without it
-                    DateTime orderDate = DateTime.Now;
-                    int orderId = CustomerDAO.Instance.InsertOrderTransaction(customerId, 0, orderDate, false);
+                    MessageBox.Show("Organization not specified. orgId set to null.");
+                }
 
-                    if (orderId > 0)
-                    {
-                        string fName = this.FirstName;
-                        string lName = this.LastName;
+                // Insert order transaction
+                DateTime orderDate = DateTime.Now;
+                int orderId = CustomerDAO.Instance.InsertOrderTransaction(customerId, orgId, orderDate, false);
 
-                        // Pass orderId to OrderUC
-                        OrderUC uc = new OrderUC();
-                        uc.SetRecipientName(fName, lName);
+                if (orderId > 0)
+                {
+                    MessageBox.Show("Order transaction inserted successfully!");
 
-                        // Set orderId in OrderUC
-                        uc.SetOrderId(orderId);
+                    string fName = this.FirstName;
+                    string lName = this.LastName;
 
-                        addUserControl(uc);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to insert order transaction.");
-                    }
+                    // Pass orderId to OrderUC
+                    OrderUC uc = new OrderUC();
+                    uc.SetRecipientName(fName, lName);
+
+                    // Set orderId in OrderUC
+                    uc.SetOrderId(orderId);
+
+                    addUserControl(uc);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to insert order transaction.");
                 }
             }
             else

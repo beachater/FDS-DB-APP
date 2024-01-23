@@ -51,9 +51,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.itemGetDAOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemGetDAOBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.totalItemDataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -376,6 +376,14 @@
             this.label6.Tag = "";
             this.label6.Text = "Total Items";
             // 
+            // itemGetDAOBindingSource
+            // 
+            this.itemGetDAOBindingSource.DataSource = typeof(FDS_application.ItemGetDAO);
+            // 
+            // itemGetDAOBindingSource1
+            // 
+            this.itemGetDAOBindingSource1.DataSource = typeof(FDS_application.ItemGetDAO);
+            // 
             // deleteColumn
             // 
             this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -389,14 +397,7 @@
             this.deleteColumn.Name = "deleteColumn";
             this.deleteColumn.Text = "Delete";
             this.deleteColumn.UseColumnTextForButtonValue = true;
-            // 
-            // itemGetDAOBindingSource
-            // 
-            this.itemGetDAOBindingSource.DataSource = typeof(FDS_application.ItemGetDAO);
-            // 
-            // itemGetDAOBindingSource1
-            // 
-            this.itemGetDAOBindingSource1.DataSource = typeof(FDS_application.ItemGetDAO);
+            this.deleteColumn.Visible = false;
             // 
             // OrderUC
             // 

@@ -101,6 +101,39 @@ namespace FDS_application
                 {
                     connection.Open();
 
+                    // Delete order items specification first
+                    string deleteOrderItemsSpecQuery = @"
+                DELETE ois
+                FROM tb_order_items_specification ois
+                JOIN tb_order_items oi ON ois.order_item_id = oi.order_item_id
+                WHERE oi.order_id IN (SELECT order_id FROM tb_order_transaction WHERE total_price IS NULL OR total_price = 0)
+            ";
+
+                    using (MySqlCommand deleteOrderItemsSpecCommand = new MySqlCommand(deleteOrderItemsSpecQuery, connection))
+                    {
+                        deleteOrderItemsSpecCommand.ExecuteNonQuery();
+                    }
+
+                    // Delete order items
+                    string deleteOrderItemsQuery = @"
+                DELETE oi
+                FROM tb_order_items oi
+                WHERE oi.order_id IN (SELECT order_id FROM tb_order_transaction WHERE total_price IS NULL OR total_price = 0)
+            ";
+
+                    using (MySqlCommand deleteOrderItemsCommand = new MySqlCommand(deleteOrderItemsQuery, connection))
+                    {
+                        deleteOrderItemsCommand.ExecuteNonQuery();
+                    }
+
+                    // Delete rows with total_price 0 or null in tb_order_transaction
+                    string deleteOrderTransactionQuery = "DELETE FROM tb_order_transaction WHERE total_price IS NULL OR total_price = 0";
+                    using (MySqlCommand deleteOrderTransactionCommand = new MySqlCommand(deleteOrderTransactionQuery, connection))
+                    {
+                        deleteOrderTransactionCommand.ExecuteNonQuery();
+                    }
+
+                    // Retrieve the orders after deletion
                     string query = @"
                 SELECT
                     o.order_id,
